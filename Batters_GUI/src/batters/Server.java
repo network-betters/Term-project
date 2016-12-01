@@ -18,7 +18,7 @@ public class Server {
 			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
 		}
 
-		System.out.println("The chat server is running.");
+		System.out.println("The quiz game server is running.");
 		ServerSocket listener = new ServerSocket(PORT);
 		try {
 			while (true) {
