@@ -8,22 +8,22 @@ public class Room extends Thread {
 	private DataBox dataBox;
 	private Problem problem;
 	private String type = "";
-	private int userNum = 0;
+	
 	private int entranceFee = 0;
 	private int currentP = 0; // current point in this room
-	private int minimumRR = 0; // minimum raise rate
-	private int maximumRR = 0; // maximum raise rate
+	private int minRR = 0; // minimum raise rate
+	private int maxRR = 0; // maximum raise rate
 	String msg;
 
-	public Room(String topic, String type, int entranceFee, int minimumRR, DataBox dataBox) {
+	public Room(String topic, String type, int entranceFee, int minRR, DataBox dataBox) {
 		try {
 			this.problem = new ProblemDao(topic).get();
 			this.type = type;
 			this.entranceFee = entranceFee;
-			this.minimumRR = minimumRR;
+			this.minRR = minRR;
 			this.dataBox = dataBox;
 
-			dataBox.setRoom(minimumRR, start, problem, type, entranceFee, entranceFee, minimumRR, minimumRR);
+			dataBox.setRoom(minRR, start, problem, type, entranceFee, minRR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

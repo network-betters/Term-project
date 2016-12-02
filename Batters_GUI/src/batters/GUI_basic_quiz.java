@@ -110,7 +110,7 @@ public class GUI_basic_quiz extends JFrame {
 		UserList.setEditable(false);
 		UserList.setForeground(new Color(255, 255, 240));
 		UserList.setBackground(new Color(23, 85, 110));
-		UserList.setBounds(477, 71, 116, 204);
+		UserList.setBounds(477, 39, 116, 236);
 		QuizPane.add(UserList);
 		
 		JLabel lblMaximumRaise = new JLabel("Maximum Raise Rate : ");
@@ -124,11 +124,5 @@ public class GUI_basic_quiz extends JFrame {
 		lblCumulative.setForeground(new Color(255, 255, 240));
 		lblCumulative.setBounds(318, 12, 275, 18);
 		QuizPane.add(lblCumulative);
-		
-		JLabel lblPoint = new JLabel("Point : ");
-		lblPoint.setFont(new Font("Kristen ITC", Font.BOLD, 15));
-		lblPoint.setForeground(Color.WHITE);
-		lblPoint.setBounds(477, 41, 115, 18);
-		QuizPane.add(lblPoint);
 	}
 }

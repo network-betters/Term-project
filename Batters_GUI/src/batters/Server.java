@@ -11,19 +11,19 @@ public class Server {
 	private final static int PORT = 827;
 	private static ArrayList<DataBox> dataBoxes = new ArrayList<DataBox>();
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
-
+	private final static int room_num = 9;
+	
 	public static void main(String[] args) throws Exception {
-		for(int i = 0; i < 9; i++) {
+		for(int i = 0; i < room_num; i++) {
 			dataBoxes.add(new DataBox());
 			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
 		}
 
-		System.out.println("The quiz game server is running.");
+		System.out.println("The chat server is running.");
 		ServerSocket listener = new ServerSocket(PORT);
 		try {
 			while (true) {
 				new Handler(listener.accept()).start();
-				System.out.println("¾È³çÇÏ¼¼¿ä");
 			}
 		} finally {
 			listener.close();
@@ -58,9 +58,27 @@ public class Server {
 				while (true) {
 					String msg = in.readLine();
 					if (msg.startsWith("ENTER")) {
-						System.out.println("get message");
-						dataBoxes.get(1).enter(in, out);
-					} 
+						//client access to the room 
+						int room = Integer.parseInt(msg.substring(6));
+						if(room >= room_num) {
+							out.println("FAILED");
+						} else {
+							out.println("ENTERED");
+							out.print(dataBoxes.get(room).enter(in, out));
+							
+							//charge entrance fee
+							out.println(dataBoxes.get(room).getEntranceFee());
+							
+							//get client's point
+							dataBoxes.get(room).setMaxP(Integer.parseInt(in.readLine()));
+						}	
+					} else if(msg.startsWith("EXIT")) {
+						for(DataBox temp : dataBoxes) {
+							temp.leave(in, out);
+						}
+					} else if(msg.startsWith("")) {
+						
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
