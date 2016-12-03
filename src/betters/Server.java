@@ -58,9 +58,9 @@ public class Server {
 				while (true) {
 					String msg = in.readLine();
 					if (msg.startsWith("ENTER")) {
-						//client access to the room 
-						int room = Integer.parseInt(msg.substring(6));
-						if(room >= room_num) {
+						//client access to the room
+						int room = Integer.parseInt(msg.substring(6, 7));
+						if(dataBoxes.get(room).getEntranceFee() > Integer.parseInt(msg.substring(8))) {
 							out.println("FAILED");
 						} else {
 							out.println("ENTERED");

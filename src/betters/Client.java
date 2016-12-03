@@ -107,6 +107,26 @@ public class Client {
 	class MainManu extends JFrame {
 		private JPanel MainManuPane;
 		private JTextField textUserName;
+		
+		public void enter() {
+			String msg;
+			Quiz choMovie;
+			
+			try {
+				msg = in.readLine();
+				if(msg.equals("ENTERED")) {
+					//charge entrance fee
+					currentP -= Integer.parseInt(in.readLine());
+					out.println(currentP);
+					//get data from room
+					dataBox.decrypt(in.readLine());
+					choMovie = new Quiz();
+					choMovie.setVisible(true);
+				}
+			} catch (Exception except) {
+				except.printStackTrace();
+			}
+		}
 
 		public MainManu(String Username) {
 			setForeground(Color.WHITE);
@@ -134,24 +154,8 @@ public class Client {
 			JButton btnchoMoive = new JButton("Moive");
 			btnchoMoive.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String msg;
-					Quiz choMovie;
-					out.println("ENTER 0");
-					try {
-						msg = in.readLine();
-						System.out.println(msg);
-						if(msg.equals("ENTERED")) {
-							//charge entrance fee
-							currentP -= Integer.parseInt(in.readLine());
-							out.println(currentP);
-							//get data from room
-							dataBox.decrypt(in.readLine());
-							choMovie = new Quiz();
-							choMovie.setVisible(true);
-						}
-					} catch (Exception except) {
-						except.printStackTrace();
-					}
+					out.println("ENTER 0 "+ currentP);
+					enter();
 					lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 				}
 			});
@@ -161,24 +165,8 @@ public class Client {
 			JButton btnchoProgram = new JButton("Programming");
 			btnchoProgram.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String msg;
-					Quiz choProgram;
-					out.println("ENTER 1");
-					try {
-						msg = in.readLine();
-						System.out.println(msg);
-						if(msg.equals("ENTERED")) {
-							//charge entrance fee
-							currentP -= Integer.parseInt(in.readLine());
-							out.println(currentP);
-							//get data from room
-							dataBox.decrypt(in.readLine());
-							choProgram = new Quiz();
-							choProgram.setVisible(true);
-						}
-					} catch (Exception except) {
-						except.printStackTrace();
-					}
+					out.println("ENTER 1 " + currentP);
+					enter();
 					lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 				}
 			});
@@ -188,24 +176,8 @@ public class Client {
 			JButton btnchoSocial = new JButton("Social");
 			btnchoSocial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String msg;
-					Quiz choSocial;
-					out.println("ENTER 2");
-					try {
-						msg = in.readLine();
-						System.out.println(msg);
-						if(msg.equals("ENTERED")) {
-							//charge entrance fee
-							currentP -= Integer.parseInt(in.readLine());
-							out.println(currentP);
-							//get data from room
-							dataBox.decrypt(in.readLine());
-							choSocial = new Quiz();
-							choSocial.setVisible(true);
-						}
-					} catch (Exception except) {
-						except.printStackTrace();
-					}
+					out.println("ENTER 2 " + currentP);
+					enter();
 					lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 				}
 			});
@@ -220,24 +192,8 @@ public class Client {
 			JButton btnSubMovie = new JButton("Movie");
 			btnSubMovie.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String msg;
-					Quiz subMovie;
-					out.println("ENTER 3");
-					try {
-						msg = in.readLine();
-						System.out.println(msg);
-						if(msg.equals("ENTERED")) {
-							//charge entrance fee
-							currentP -= Integer.parseInt(in.readLine());
-							out.println(currentP);
-							//get data from room
-							dataBox.decrypt(in.readLine());
-							subMovie = new Quiz();
-							subMovie.setVisible(true);
-						}
-					} catch (Exception except) {
-						except.printStackTrace();
-					}
+					out.println("ENTER 3 " + currentP);
+					enter();
 					lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 				}
 			});
