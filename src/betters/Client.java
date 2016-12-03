@@ -342,8 +342,10 @@ public class Client {
 			btnReady.setFocusPainted(false);
 			btnReady.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (client_ready == false)
+					if (client_ready == false){
 						client_ready = true;
+						out.println("READY");
+					}
 					else
 						client_ready = false;
 				}

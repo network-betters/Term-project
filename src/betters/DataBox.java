@@ -21,6 +21,17 @@ public class DataBox {
 	private int maxP = 0; // maximum point for betting
 	String msg;
 
+	public DataBox setRoom(int entranceFee, int minRR) {
+		this.entranceFee = entranceFee;
+		this.minRR = minRR;
+		
+		return this;
+	}
+	
+	public boolean getStatus() {
+		return start;
+	}
+	
 	public void enter(BufferedReader reader, PrintWriter writer) {
 		int point;
 		if (!readers.contains(reader)) {
@@ -51,7 +62,7 @@ public class DataBox {
 	
 
 	public void leave(BufferedReader reader, PrintWriter writer) {
-		if (!readers.contains(reader)) {
+		if (readers.contains(reader)) {
 			readers.remove(reader);
 			writers.remove(writer);
 
@@ -80,10 +91,15 @@ public class DataBox {
 		System.out.println(cumulativeP + " " + minRR + " " + maxP);
 	}
 
-	public DataBox setRoom(int entranceFee, int minRR) {
-		this.entranceFee = entranceFee;
-		this.minRR = minRR;
+	public void getReady() {
+		readyNum++;
 		
-		return this;
+		if(userNum == readyNum && readyNum > 1) {
+			getStart();
+		}
+	}
+	
+	public void getStart() {
+		start = true;
 	}
 }

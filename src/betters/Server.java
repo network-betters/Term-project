@@ -60,7 +60,7 @@ public class Server {
 					if (msg.startsWith("ENTER")) {
 						//client access to the room
 						int room = Integer.parseInt(msg.substring(6, 7));
-						if(dataBoxes.get(room).getEntranceFee() > Integer.parseInt(msg.substring(8))) {
+						if(dataBoxes.get(room).getEntranceFee() > Integer.parseInt(msg.substring(8)) && !dataBoxes.get(room).getStatus()) {
 							out.println("FAILED");
 						} else {
 							out.println("ENTERED");
@@ -70,7 +70,7 @@ public class Server {
 						for(DataBox temp : dataBoxes) {
 							temp.leave(in, out);
 						}
-					} else if(msg.startsWith("")) {
+					} else if(msg.startsWith("READY")) {
 						
 					}
 				}
