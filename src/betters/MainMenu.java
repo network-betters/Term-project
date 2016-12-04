@@ -34,9 +34,8 @@ public class MainMenu extends JFrame {
 				currentP -= Integer.parseInt(in.readLine());
 				out.println(currentP);
 				// get data from room
-				System.out.println(in.readLine());
 				dataBox.decrypt(in.readLine());
-				choMovie = new Quiz(in, out, currentP);
+				choMovie = new Quiz(dataBox, in, out, currentP);
 				choMovie.setVisible(true);
 			}
 		} catch (Exception except) {
@@ -44,11 +43,12 @@ public class MainMenu extends JFrame {
 		}
 	}
 
-	public MainMenu(String Username, BufferedReader br, PrintWriter pw, int point) {
+	public MainMenu(DataBox db, String Username, BufferedReader br, PrintWriter pw, int point) {
+		this.dataBox = db;
 		this.in = br;
 		this.out = pw;
 		this.currentP = point;
-		
+
 		setForeground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(GUI.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
@@ -124,7 +124,7 @@ public class MainMenu extends JFrame {
 		btnSubProgramming.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz SubProgramming;
-				SubProgramming = new Quiz(in, out, currentP);
+				SubProgramming = new Quiz(dataBox, in, out, currentP);
 				SubProgramming.setVisible(true);
 			}
 		});
@@ -135,7 +135,7 @@ public class MainMenu extends JFrame {
 		btnSubSocial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz SubSocial;
-				SubSocial = new Quiz(in, out, currentP);
+				SubSocial = new Quiz(dataBox, in, out, currentP);
 				SubSocial.setVisible(true);
 			}
 		});
@@ -151,7 +151,7 @@ public class MainMenu extends JFrame {
 		btnSpMovie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz SpMovie;
-				SpMovie = new Quiz(in, out, currentP);
+				SpMovie = new Quiz(dataBox, in, out, currentP);
 				SpMovie.setVisible(true);
 			}
 		});
@@ -162,7 +162,7 @@ public class MainMenu extends JFrame {
 		btnSpProgramming.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz SpProgramming;
-				SpProgramming = new Quiz(in, out, currentP);
+				SpProgramming = new Quiz(dataBox, in, out, currentP);
 				SpProgramming.setVisible(true);
 			}
 		});
@@ -173,7 +173,7 @@ public class MainMenu extends JFrame {
 		btnSpSocial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz SpSocial;
-				SpSocial = new Quiz(in, out, currentP);
+				SpSocial = new Quiz(dataBox, in, out, currentP);
 				SpSocial.setVisible(true);
 			}
 		});
@@ -208,7 +208,7 @@ public class MainMenu extends JFrame {
 		btnPractice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Quiz Practice;
-				Practice = new Quiz(in, out, currentP);
+				Practice = new Quiz(dataBox, in, out, currentP);
 				Practice.setVisible(true);
 			}
 		});

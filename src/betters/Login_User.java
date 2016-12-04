@@ -27,8 +27,10 @@ public class Login_User extends JFrame {
 	private JTextField EnterName;
 	private JButton btnSubmit;
 	public String Enter_UserName = "";
+	private DataBox dataBox;
 
-	public Login_User(BufferedReader br, PrintWriter pw, int point) {
+	public Login_User(DataBox db, BufferedReader br, PrintWriter pw, int point) {
+		this.dataBox = db;
 		this.in = br;
 		this.out = pw;
 		this.currentP = point;
@@ -54,7 +56,7 @@ public class Login_User extends JFrame {
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Enter_UserName = EnterName.getText();
-				MainMenu mainmanu = new MainMenu(Enter_UserName, in, out, currentP);
+				MainMenu mainmanu = new MainMenu(dataBox, Enter_UserName, in, out, currentP);
 				mainmanu.setVisible(true);
 				dispose();
 			}

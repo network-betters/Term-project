@@ -42,7 +42,7 @@ public class Client {
 	}
 
 	public void run() throws Exception {
-		Login_User login = new Login_User(in, out, currentP);
+		Login_User login = new Login_User(dataBox, in, out, currentP);
 		login.setVisible(true);
 		
 		while(true){

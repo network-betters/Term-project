@@ -24,8 +24,10 @@ public class Quiz extends JFrame {
 	private PrintWriter out;
 	private BufferedReader in;
 	private int currentP = 0;
+	private DataBox dataBox;
 
-	public Quiz(BufferedReader br, PrintWriter pw, int point) {
+	public Quiz(DataBox db, BufferedReader br, PrintWriter pw, int point) {
+		this.dataBox = db;
 		this.in = br;
 		this.out = pw;
 		this.currentP = point;

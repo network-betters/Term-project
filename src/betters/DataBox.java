@@ -24,43 +24,41 @@ public class DataBox {
 	public DataBox setRoom(int entranceFee, int minRR) {
 		this.entranceFee = entranceFee;
 		this.minRR = minRR;
-		
+
 		return this;
 	}
-	
+
 	public boolean getStatus() {
 		return start;
 	}
-	
+
 	public void enter(BufferedReader reader, PrintWriter writer) {
 		int point;
 		if (!readers.contains(reader)) {
 			readers.add(reader);
 			writers.add(writer);
 
-			//charge entrance fee
+			// charge entrance fee
 			writer.println(entranceFee);
 			userNum++;
-			
+
 			try {
 				point = Integer.parseInt(reader.readLine());
-				
-				//set maximum point
+
+				// set maximum point
 				if (userNum == 1) {
 					maxP = point;
-				} else if (point < maxP) { 
+				} else if (point < maxP) {
 					maxP = point;
 				}
-			}catch(Exception e) {
-				e.printStackTrace(); 
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
-			String msg = cumulativeP + ":" + minRR + ":" + maxP;
-			//send dataBox information
-			writer.println(msg);
+
+			// send dataBox information
+			writer.println(cumulativeP + ":" + minRR + ":" + maxP);
 		}
 	}
-	
 
 	public void leave(BufferedReader reader, PrintWriter writer) {
 		if (readers.contains(reader)) {
@@ -70,7 +68,6 @@ public class DataBox {
 			userNum--;
 		}
 	}
-	
 
 	public void sendToClient(String msg) throws Exception {
 		for (PrintWriter writer : writers) {
@@ -78,32 +75,30 @@ public class DataBox {
 		}
 	}
 
-
 	public int getEntranceFee() {
 		cumulativeP += entranceFee;
 		return entranceFee;
 	}
-	
+
 	public void decrypt(String str) {
 		token = new StringTokenizer(str, ":");
 		cumulativeP = Integer.parseInt(token.nextToken());
 		minRR = Integer.parseInt(token.nextToken());
 		maxP = Integer.parseInt(token.nextToken());
-		System.out.println(cumulativeP + " " + minRR + " " + maxP);
 	}
 
 	public void getReady() {
 		readyNum++;
-		
-		if(userNum == readyNum && readyNum > 1) {
+
+		if (userNum == readyNum && readyNum > 1) {
 			getStart();
 		}
 	}
-	
+
 	public void getStart() {
 		start = true;
-		
-		for(PrintWriter temp : writers) {
+
+		for (PrintWriter temp : writers) {
 			temp.println("START");
 		}
 	}
