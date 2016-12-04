@@ -5,47 +5,26 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class MainMenu extends JFrame {
+	final JLabel lblYourExtraPoint;
 	private JPanel MainManuPane;
-	private JTextField textUserName;
 	private PrintWriter out;
-	private BufferedReader in;
 	private int currentP = 0;
-	private DataBox dataBox;
 
-	public void enter() {
-		String msg;
-		Quiz choMovie;
-
-		try {
-			msg = in.readLine();
-			if (msg.equals("ENTERED")) {
-				// charge entrance fee
-				currentP -= Integer.parseInt(in.readLine());
-				out.println(currentP);
-				// get data from room
-				dataBox.decrypt(in.readLine());
-				choMovie = new Quiz(dataBox, in, out, currentP);
-				choMovie.setVisible(true);
-			}
-		} catch (Exception except) {
-			except.printStackTrace();
-		}
+	public void setExtraPoint(int point) {
+		currentP = point;
+		lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 	}
-
-	public MainMenu(DataBox db, String Username, BufferedReader br, PrintWriter pw, int point) {
-		this.dataBox = db;
-		this.in = br;
+	
+	public MainMenu(String Username, PrintWriter pw, int point) {
 		this.out = pw;
 		this.currentP = point;
 
@@ -66,7 +45,7 @@ public class MainMenu extends JFrame {
 		lblChoice.setFont(new Font("Elephant", Font.BOLD, 22));
 		MainManuPane.add(lblChoice);
 
-		final JLabel lblYourExtraPoint = new JLabel("Your Extra Point : " + currentP);
+		lblYourExtraPoint = new JLabel("Your Extra Point : " + currentP);
 		lblYourExtraPoint.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
 		lblYourExtraPoint.setBounds(294, 12, 207, 18);
 		MainManuPane.add(lblYourExtraPoint);
@@ -75,8 +54,6 @@ public class MainMenu extends JFrame {
 		btnchoMoive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				out.println("ENTER 0 " + currentP);
-				enter();
-				lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 			}
 		});
 		btnchoMoive.setBounds(49, 68, 127, 36);
@@ -86,8 +63,6 @@ public class MainMenu extends JFrame {
 		btnchoProgram.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				out.println("ENTER 1 " + currentP);
-				enter();
-				lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 			}
 		});
 		btnchoProgram.setBounds(48, 116, 128, 36);
@@ -97,8 +72,6 @@ public class MainMenu extends JFrame {
 		btnchoSocial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				out.println("ENTER 2 " + currentP);
-				enter();
-				lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 			}
 		});
 		btnchoSocial.setBounds(49, 164, 127, 36);
@@ -113,8 +86,6 @@ public class MainMenu extends JFrame {
 		btnSubMovie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				out.println("ENTER 3 " + currentP);
-				enter();
-				lblYourExtraPoint.setText("Your Extra Point : " + currentP);
 			}
 		});
 		btnSubMovie.setBounds(253, 68, 127, 36);
@@ -123,9 +94,7 @@ public class MainMenu extends JFrame {
 		JButton btnSubProgramming = new JButton("Programming");
 		btnSubProgramming.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz SubProgramming;
-				SubProgramming = new Quiz(dataBox, in, out, currentP);
-				SubProgramming.setVisible(true);
+				out.println("ENTER 4 " + currentP);
 			}
 		});
 		btnSubProgramming.setBounds(253, 116, 127, 36);
@@ -134,9 +103,7 @@ public class MainMenu extends JFrame {
 		JButton btnSubSocial = new JButton("Social");
 		btnSubSocial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz SubSocial;
-				SubSocial = new Quiz(dataBox, in, out, currentP);
-				SubSocial.setVisible(true);
+				out.println("ENTER 5 " + currentP);
 			}
 		});
 		btnSubSocial.setBounds(253, 164, 127, 36);
@@ -150,9 +117,7 @@ public class MainMenu extends JFrame {
 		JButton btnSpMovie = new JButton("Moive");
 		btnSpMovie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz SpMovie;
-				SpMovie = new Quiz(dataBox, in, out, currentP);
-				SpMovie.setVisible(true);
+				out.println("ENTER 6 " + currentP);
 			}
 		});
 		btnSpMovie.setBounds(444, 68, 127, 36);
@@ -161,9 +126,7 @@ public class MainMenu extends JFrame {
 		JButton btnSpProgramming = new JButton("Programming");
 		btnSpProgramming.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz SpProgramming;
-				SpProgramming = new Quiz(dataBox, in, out, currentP);
-				SpProgramming.setVisible(true);
+				out.println("ENTER 7 " + currentP);
 			}
 		});
 		btnSpProgramming.setBounds(444, 116, 127, 36);
@@ -172,9 +135,7 @@ public class MainMenu extends JFrame {
 		JButton btnSpSocial = new JButton("Social");
 		btnSpSocial.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz SpSocial;
-				SpSocial = new Quiz(dataBox, in, out, currentP);
-				SpSocial.setVisible(true);
+				out.println("ENTER 8 " + currentP);
 			}
 		});
 		btnSpSocial.setBounds(444, 164, 127, 36);
@@ -207,9 +168,7 @@ public class MainMenu extends JFrame {
 		JButton btnPractice = new JButton("Just Join!");
 		btnPractice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Quiz Practice;
-				Practice = new Quiz(dataBox, in, out, currentP);
-				Practice.setVisible(true);
+				out.println("PRACTICE");
 			}
 		});
 		btnPractice.setBounds(627, 68, 150, 132);

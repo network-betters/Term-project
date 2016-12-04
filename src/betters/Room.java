@@ -1,7 +1,5 @@
 package betters;
 
-import java.io.BufferedReader;
-
 public class Room extends Thread {
 	private Problem problem;
 	private String type = "";
@@ -26,9 +24,5 @@ public class Room extends Thread {
 
 	public void run() {
 
-	}
-
-	public String get_msg() {
-		return msg;
 	}
 }

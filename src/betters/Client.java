@@ -1,52 +1,59 @@
 package betters;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.EmptyBorder;
 
 public class Client {
+	Login_User login;
+	MainMenu mainmenu;
+	Quiz quiz;
 	private Socket socket;
 	BufferedReader in;
 	PrintWriter out;
 	DataBox dataBox;
-	String name;
 	private int currentP;
-	Scanner keyboard = new Scanner(System.in);
+	String userName;
 
 	public Client() throws Exception {
 		socket = new Socket("127.0.0.1", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
-		System.out.println("client created");
 		currentP = 1000;
 	}
 
 	public void run() throws Exception {
-		Login_User login = new Login_User(dataBox, in, out, currentP);
+		login = new Login_User(out);
 		login.setVisible(true);
 		
 		while(true){
+			String msg = in.readLine();
 			
+			if(msg.equals("SUBMIT")) {
+				//로그인 실패 했을 때				
+			} else if(msg.startsWith("LOGIN")) {
+				//sign in success!
+				userName = msg.substring(6);
+				login.dispose();
+				mainmenu = new MainMenu(userName, out, currentP);
+				mainmenu.setVisible(true);
+			} else if(msg.startsWith("ENTERED")) {
+				// charge entrance fee
+				currentP -= Integer.parseInt(in.readLine());
+				out.println(currentP);
+				
+				//메인메뉴 포커스 사라지게
+				mainmenu.setExtraPoint(currentP);
+				quiz = new Quiz(out);
+				quiz.setVisible(true);
+			} else if(msg.startsWith("UPDATE")) {
+				dataBox.decrypt(msg.substring(7));
+				quiz.setLbl(dataBox);
+			} else if(msg.startsWith("MESSAGE")){
+				quiz.chat(msg.substring(7));
+			}
 		}
 	}
 

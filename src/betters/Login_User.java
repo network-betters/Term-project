@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 import javax.swing.GroupLayout;
@@ -21,19 +20,13 @@ import javax.swing.border.EmptyBorder;
 
 public class Login_User extends JFrame {
 	private PrintWriter out;
-	private BufferedReader in;
-	private int currentP = 0;
 	private JPanel LoginPane;
 	private JTextField EnterName;
 	private JButton btnSubmit;
 	public String Enter_UserName = "";
-	private DataBox dataBox;
-
-	public Login_User(DataBox db, BufferedReader br, PrintWriter pw, int point) {
-		this.dataBox = db;
-		this.in = br;
-		this.out = pw;
-		this.currentP = point;
+	
+	public Login_User(PrintWriter pt) {
+		this.out = pt;
 		
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Login.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
@@ -51,14 +44,11 @@ public class Login_User extends JFrame {
 		EnterName = new JTextField();
 		EnterName.setBackground(Color.LIGHT_GRAY);
 		EnterName.setColumns(10);
-
+ 
 		btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Enter_UserName = EnterName.getText();
-				MainMenu mainmanu = new MainMenu(dataBox, Enter_UserName, in, out, currentP);
-				mainmanu.setVisible(true);
-				dispose();
+				out.println(EnterName.getText());
 			}
 		});
 		GroupLayout gl_LoginPane = new GroupLayout(LoginPane);

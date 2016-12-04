@@ -19,19 +19,27 @@ import javax.swing.border.EmptyBorder;
 
 public class Quiz extends JFrame {
 	public boolean client_ready = false;
+	JTextArea ChattingArea;
+	JLabel lblMaximumRaise;
+	JLabel lblCumulative;
+	JLabel lblPoint;
 	private JPanel QuizPane;
 	private JTextField ChattingUser;
 	private PrintWriter out;
-	private BufferedReader in;
-	private int currentP = 0;
-	private DataBox dataBox;
 
-	public Quiz(DataBox db, BufferedReader br, PrintWriter pw, int point) {
-		this.dataBox = db;
-		this.in = br;
+	public void setLbl(DataBox db) {
+		lblMaximumRaise.setText("Maximum Raise point : " + db.maxP);;
+		lblCumulative.setText("Cumulative Point : " + db.cumulativeP);;
+		lblPoint.setText("Minimum Rase Rate : " + db.minRR);;
+	}
+	
+	public void chat(String msg) {
+		ChattingArea.append(msg + "\n");
+	}
+
+	public Quiz(PrintWriter pw) {
 		this.out = pw;
-		this.currentP = point;
-		
+
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Quiz.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
 		setTitle("Quiz");
@@ -45,6 +53,13 @@ public class Quiz extends JFrame {
 		ChattingUser = new JTextField();
 		ChattingUser.setBounds(14, 364, 449, 24);
 		ChattingUser.setColumns(10);
+		ChattingUser.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				out.println("MESSAGE" + ChattingUser.getText());
+				ChattingUser.setText("");
+			}
+		});
 
 		JButton btnReady = new JButton("Ready");
 		btnReady.setSelectedIcon(null);
@@ -53,11 +68,16 @@ public class Quiz extends JFrame {
 		btnReady.setFocusPainted(false);
 		btnReady.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (client_ready == false) {
-					client_ready = true;
-					out.println("READY");
-				} else
-					client_ready = false;
+				try {
+					String msg;
+					if (client_ready == false) {
+						client_ready = true;
+						out.println("READY");
+					} else
+						client_ready = false;
+				} catch (Exception exc) {
+					exc.printStackTrace();
+				}
 			}
 		});
 		btnReady.setBounds(477, 287, 138, 47);
@@ -80,8 +100,9 @@ public class Quiz extends JFrame {
 		ProblemArea.setBackground(new Color(23, 85, 110));
 		ProblemArea.setBounds(14, 39, 449, 145);
 
-		JTextArea ChattingArea = new JTextArea();
+		ChattingArea = new JTextArea();
 		ChattingArea.setBounds(14, 196, 449, 156);
+		
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
 		QuizPane.add(ChattingArea);
@@ -96,19 +117,19 @@ public class Quiz extends JFrame {
 		UserList.setBounds(477, 71, 116, 236);
 		QuizPane.add(UserList);
 
-		JLabel lblMaximumRaise = new JLabel("Maximum Raise Rate : ");
+		lblMaximumRaise = new JLabel("Maximum Raise Rate : ");
 		lblMaximumRaise.setFont(new Font("Kristen ITC", Font.BOLD, 15));
 		lblMaximumRaise.setForeground(new Color(255, 255, 240));
 		lblMaximumRaise.setBounds(14, 12, 265, 18);
 		QuizPane.add(lblMaximumRaise);
 
-		JLabel lblCumulative = new JLabel("Cumulative Point : ");
+		lblCumulative = new JLabel("Cumulative Point : ");
 		lblCumulative.setFont(new Font("Kristen ITC", Font.BOLD, 15));
 		lblCumulative.setForeground(new Color(255, 255, 240));
 		lblCumulative.setBounds(318, 12, 275, 18);
 		QuizPane.add(lblCumulative);
 
-		JLabel lblPoint = new JLabel("Point : " + currentP);
+		lblPoint = new JLabel("Minimum Rase Rate : " );
 		lblPoint.setFont(new Font("Kristen ITC", Font.BOLD, 15));
 		lblPoint.setForeground(Color.WHITE);
 		lblPoint.setBounds(477, 41, 115, 18);

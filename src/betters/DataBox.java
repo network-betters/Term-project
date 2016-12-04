@@ -1,24 +1,20 @@
 package betters;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class DataBox {
-	public static HashSet<BufferedReader> readers = new HashSet<BufferedReader>();
-	public static HashSet<PrintWriter> writers = new HashSet<PrintWriter>();
 	StringTokenizer token;
-	private InputStream out;
+	public HashSet<PrintWriter> out = new HashSet<PrintWriter>(); 
 	private boolean start = false;
 	private Problem problem;
 	private int userNum = 0;
 	private int readyNum = 0;
 	private int entranceFee = 0;
-	private int cumulativeP = 0; // current point in this room
-	private int minRR = 0; // minimum raise rate
-	private int maxP = 0; // maximum point for betting
+	public int cumulativeP = 0; // current point in this room
+	public int minRR = 0; // minimum raise rate
+	public int maxP = 0; // maximum point for betting
 	String msg;
 
 	public DataBox setRoom(int entranceFee, int minRR) {
@@ -32,51 +28,32 @@ public class DataBox {
 		return start;
 	}
 
-	public void enter(BufferedReader reader, PrintWriter writer) {
-		int point;
-		if (!readers.contains(reader)) {
-			readers.add(reader);
-			writers.add(writer);
-
-			// charge entrance fee
-			writer.println(entranceFee);
+	public String enter(PrintWriter pt, int point) {
+		if(!out.contains(pt)){
 			userNum++;
-
-			try {
-				point = Integer.parseInt(reader.readLine());
-
-				// set maximum point
-				if (userNum == 1) {
-					maxP = point;
-				} else if (point < maxP) {
-					maxP = point;
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			
+			out.add(pt);
+			
+			//update cumulative point
+			cumulativeP += entranceFee;
+			
+			// set maximum point
+			if (userNum == 1) {
+				maxP = point;
+			} else if (point < maxP) {
+				maxP = point;
 			}
-
-			// send dataBox information
-			writer.println(cumulativeP + ":" + minRR + ":" + maxP);
 		}
+		return "UPDATE " + cumulativeP + ":" + minRR + ":" + maxP;
 	}
 
-	public void leave(BufferedReader reader, PrintWriter writer) {
-		if (readers.contains(reader)) {
-			readers.remove(reader);
-			writers.remove(writer);
-
-			userNum--;
-		}
-	}
-
-	public void sendToClient(String msg) throws Exception {
-		for (PrintWriter writer : writers) {
-			writer.println(msg + "\n");
-		}
+	public void leave(PrintWriter pt) {
+		out.remove(pt);
+		
+		userNum--;
 	}
 
 	public int getEntranceFee() {
-		cumulativeP += entranceFee;
 		return entranceFee;
 	}
 
@@ -87,19 +64,10 @@ public class DataBox {
 		maxP = Integer.parseInt(token.nextToken());
 	}
 
-	public void getReady() {
+	public boolean getReady() {
 		readyNum++;
 
-		if (userNum == readyNum && readyNum > 1) {
-			getStart();
-		}
+		return (readyNum == userNum) ? true : false;
 	}
 
-	public void getStart() {
-		start = true;
-
-		for (PrintWriter temp : writers) {
-			temp.println("START");
-		}
-	}
 }
