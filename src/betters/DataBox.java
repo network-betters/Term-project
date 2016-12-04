@@ -55,8 +55,9 @@ public class DataBox {
 				e.printStackTrace(); 
 			}
 			
+			String msg = cumulativeP + ":" + minRR + ":" + maxP;
 			//send dataBox information
-			writer.println(cumulativeP + ":" + minRR + ":" + maxP);
+			writer.println(msg);
 		}
 	}
 	
@@ -101,5 +102,9 @@ public class DataBox {
 	
 	public void getStart() {
 		start = true;
+		
+		for(PrintWriter temp : writers) {
+			temp.println("START");
+		}
 	}
 }
