@@ -15,11 +15,12 @@ public class Server {
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
 	private static ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
 	private final static int room_num = 9;
+	static int index = 0;
 
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < room_num; i++) {
 			dataBoxes.add(new DataBox());
-			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
+			rooms.add(new Room("movies", "type", 100, 50, dataBoxes.get(i)));
 			rooms.get(i).start();
 		}
 
@@ -62,8 +63,9 @@ public class Server {
 				int room = 0;
 
 				name = in.readLine();
-				 while (names.contains(name)){
-					 out.println("SUBMIT");
+
+				while (names.contains(name)) {
+					out.println("SUBMIT");
 					name = in.readLine();
 				}
 
@@ -102,11 +104,20 @@ public class Server {
 							temp.println("MESSAGE " + name + ": " + msg.substring(7));
 						}
 					} else if (msg.startsWith("READY")) {
+						System.out.println(index);
 						if (dataBoxes.get(room).getReady()) {
-							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("START");
-								temp.println(dataBoxes.get(room).getQuiz());
-							}
+							dataBoxes.get(room).out.get(index++).println("START");
+						}
+					} else if (msg.startsWith("BETTING")) {
+						if (index < writers.size()) {
+							System.out.println(index);
+							dataBoxes.get(room).out.get(index++).println("START");
+						}
+
+						msg = dataBoxes.get(room).raise(msg.substring(8));
+
+						for (PrintWriter temp : dataBoxes.get(room).out) {
+							temp.println(msg);
 						}
 					}
 				}

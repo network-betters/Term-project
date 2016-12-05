@@ -4,17 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
-import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -36,10 +33,9 @@ public class Login_User extends JFrame {
 	ImageIcon bg;
 	public String Enter_UserName = "";
 	
-	public Login_User(PrintWriter pt) throws IOException{
+	public Login_User(PrintWriter pt){
 		this.out = pt;
 		bg = new ImageIcon("/betters/src/image/LOGIN.png");
-
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Login.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
 		setTitle("Login");
