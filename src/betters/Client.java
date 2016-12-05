@@ -63,7 +63,10 @@ public class Client {
 				String name = token.nextToken();
 				int point = Integer.parseInt(token.nextToken());
 
-				if (userName == name) {
+				System.out.println(userName);
+				
+				if (userName.equals(name)) {
+					System.out.println("close");
 					betting.setVisible(false);
 					currentP -= point;
 				}

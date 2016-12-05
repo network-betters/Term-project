@@ -15,6 +15,7 @@ public class Server {
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
 	private static ArrayList<PrintWriter> writers = new ArrayList<PrintWriter>();
 	private final static int room_num = 9;
+	static int index = 0;
 
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < room_num; i++) {
@@ -60,7 +61,6 @@ public class Server {
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintWriter(socket.getOutputStream(), true);
 				int room = 0;
-				int index = 0;
 
 				name = in.readLine();
 
@@ -104,17 +104,16 @@ public class Server {
 							temp.println("MESSAGE " + name + ": " + msg.substring(7));
 						}
 					} else if (msg.startsWith("READY")) {
+						System.out.println(index);
 						if (dataBoxes.get(room).getReady()) {
 							dataBoxes.get(room).out.get(index++).println("START");
 						}
 					} else if (msg.startsWith("BETTING")) {
 						if (index < writers.size()) {
+							System.out.println(index);
 							dataBoxes.get(room).out.get(index++).println("START");
-						} else {
-							out.println("DONE");
-							break;
-						}
-
+						} 
+						
 						msg = dataBoxes.get(room).raise(msg.substring(8));
 
 						for (PrintWriter temp : dataBoxes.get(room).out) {
