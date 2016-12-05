@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import javax.swing.JOptionPane;
+import java.util.StringTokenizer;
 
 public class Client {
 	Login_User login;
 	MainMenu mainmenu;
 	Quiz quiz;
+	Betting betting;
 	private Socket socket;
 	BufferedReader in;
 	PrintWriter out;
@@ -29,36 +29,50 @@ public class Client {
 	public void run() throws Exception {
 		login = new Login_User(out);
 		login.setVisible(true);
-		
-		while(true){
+
+		while (true) {
 			String msg = in.readLine();
-			
-			if(msg.equals("SUBMIT")) {
-				//로그인 실패 했을 때			
-				JOptionPane.showMessageDialog(null, "This name is already existed. Write over again.");
-			} else if(msg.startsWith("LOGIN")) {
-				//sign in success!
+			System.out.println(msg);
+			if (msg.equals("SUBMIT")) {
+				// 로그인 실패 했을 때
+			} else if (msg.startsWith("LOGIN")) {
+				// sign in success!
 				userName = msg.substring(6);
 				login.dispose();
 				mainmenu = new MainMenu(userName, out, currentP);
 				mainmenu.setVisible(true);
-			} else if(msg.startsWith("ENTERED")) {
+			} else if (msg.startsWith("ENTERED")) {
 				// charge entrance fee
 				currentP -= Integer.parseInt(in.readLine());
 				out.println(currentP);
-				
-				//메인메뉴 포커스 사라지게
+
+				// 메인메뉴 포커스 사라지게
 				mainmenu.setExtraPoint(currentP);
 				quiz = new Quiz(out);
 				quiz.setVisible(true);
-			} else if(msg.startsWith("UPDATE")) {
+			} else if (msg.startsWith("UPDATE")) {
 				dataBox.decrypt(msg.substring(7));
 				quiz.setLbl(dataBox);
-			} else if(msg.startsWith("MESSAGE")){
+			} else if (msg.startsWith("MESSAGE")) {
 				quiz.chat(msg.substring(7));
-			} else if(msg.startsWith("START")) {
-				dataBox.setQuiz(in.readLine());
-				quiz.showProblem(dataBox.problem.getProblem());
+			} else if (msg.startsWith("START")) {
+				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
+				betting.setVisible(true);
+			} else if (msg.startsWith("RAISE")) {
+				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
+				String name = token.nextToken();
+				int point = Integer.parseInt(token.nextToken());
+
+				System.out.println(userName);
+				
+				if (userName.equals(name)) {
+					betting.setVisible(false);
+					currentP -= point;
+				}
+
+				dataBox.cumulativeP += point;
+				mainmenu.setExtraPoint(currentP);
+				quiz.setLbl(dataBox);
 			}
 		}
 	}
@@ -67,4 +81,5 @@ public class Client {
 		Client client = new Client();
 		client.run();
 	}
+
 }

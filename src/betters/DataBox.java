@@ -1,12 +1,12 @@
 package betters;
 
 import java.io.PrintWriter;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class DataBox {
 	StringTokenizer token;
-	public HashSet<PrintWriter> out = new HashSet<PrintWriter>();
+	public ArrayList<PrintWriter> out = new ArrayList<PrintWriter>();
 	private boolean start = false;
 	public Problem problem = new Problem();
 	private int userNum = 0;
@@ -49,7 +49,8 @@ public class DataBox {
 	}
 
 	public void leave(PrintWriter pt) {
-		out.remove(pt);
+		if (out.contains(pt))
+			out.remove(pt);
 
 		userNum--;
 	}
@@ -79,5 +80,17 @@ public class DataBox {
 		token = new StringTokenizer(str, ":");
 		problem.setProblem(token.nextToken());
 		problem.setSub_topic(token.nextToken());
+	}
+	
+	public String raise(String str) {
+		int point;
+		
+		token = new StringTokenizer(str, ":");
+		token.nextToken();
+		point = Integer.parseInt(token.nextToken());
+		
+		cumulativeP += point;
+		
+		return "RAISE " + str;
 	}
 }

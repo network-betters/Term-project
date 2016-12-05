@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -26,8 +24,6 @@ public class Quiz extends JFrame {
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
 	JLabel lblPoint;
-	JScrollPane scroll;
-	JTextArea UserList;
 	private JPanel QuizPane;
 	private JTextField ChattingUser;
 	private PrintWriter out;
@@ -44,28 +40,23 @@ public class Quiz extends JFrame {
 	
 	public void chat(String msg) {
 		ChattingArea.append(msg + "\n");
-		ChattingArea.setCaretPosition(ChattingArea.getDocument().getLength());
 	}
 
-	public void resetUserlist(){
-		UserList.setText("");
-	}
-	
 	public Quiz(PrintWriter pw) {
 		this.out = pw;
-		
+
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Quiz.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
 		setTitle("Quiz");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 629, 500);
+		setBounds(100, 100, 629, 447);
 		QuizPane = new JPanel();
 		QuizPane.setBackground(new Color(12, 42, 53));
 		QuizPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(QuizPane);
 
 		ChattingUser = new JTextField();
-		ChattingUser.setBounds(14, 418, 449, 24);
+		ChattingUser.setBounds(14, 364, 449, 24);
 		ChattingUser.setColumns(10);
 		ChattingUser.addActionListener(new ActionListener() {
 			@Override
@@ -90,11 +81,11 @@ public class Quiz extends JFrame {
 				}
 			}
 		});
-		btnReady.setBounds(477, 287, 116, 42);
+		btnReady.setBounds(477, 287, 138, 47);
 		btnReady.setBackground(new Color(23, 85, 110));
 
 		JButton btnExit = new JButton("Exit");
-		btnExit.setBounds(476, 400, 116, 42);
+		btnExit.setBounds(476, 346, 116, 42);
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				out.println("EXIT");
@@ -107,29 +98,23 @@ public class Quiz extends JFrame {
 		ProblemArea.setEditable(false);
 		ProblemArea.setForeground(new Color(255, 255, 240));
 		ProblemArea.setBackground(new Color(23, 85, 110));
-		ProblemArea.setBounds(14, 71, 449, 167);
+		ProblemArea.setBounds(14, 39, 449, 145);
 
 		ChattingArea = new JTextArea();
 		ChattingArea.setBounds(14, 196, 449, 156);
-		ChattingArea.setEditable(false);
-		scroll = new JScrollPane(ChattingArea);
-		scroll.setOpaque(false);
-		scroll.setBounds(14, 250, 449, 156);
-		scroll.setViewportView(ChattingArea);
-		QuizPane.add(scroll);
 		
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
-		//QuizPane.add(ChattingArea);
+		QuizPane.add(ChattingArea);
 		QuizPane.add(ProblemArea);
 		QuizPane.add(btnReady);
 		QuizPane.add(btnExit);
 
-		UserList = new JTextArea();
+		JTextArea UserList = new JTextArea();
 		UserList.setEditable(false);
 		UserList.setForeground(new Color(255, 255, 240));
 		UserList.setBackground(new Color(23, 85, 110));
-		UserList.setBounds(477, 71, 116, 190);
+		UserList.setBounds(477, 71, 116, 236);
 		QuizPane.add(UserList);
 
 		lblMaximumRaise = new JLabel("Maximum Raise Rate : ");
@@ -147,7 +132,7 @@ public class Quiz extends JFrame {
 		lblPoint = new JLabel("Minimum Rase Rate : " );
 		lblPoint.setFont(new Font("Kristen ITC", Font.BOLD, 15));
 		lblPoint.setForeground(Color.WHITE);
-		lblPoint.setBounds(14, 41, 275, 18);
+		lblPoint.setBounds(477, 41, 115, 18);
 		QuizPane.add(lblPoint);
 	}
 }
