@@ -67,6 +67,4 @@ public class Client {
 		Client client = new Client();
 		client.run();
 	}
-
-		
 }

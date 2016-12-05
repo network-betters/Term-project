@@ -2,16 +2,21 @@ package betters;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,9 +34,9 @@ public class Login_User extends JFrame {
 	private JButton btnSubmit;
 	public String Enter_UserName = "";
 	
-	public Login_User(PrintWriter pt){
+	public Login_User(PrintWriter pt) throws IOException{
 		this.out = pt;
-		
+
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Login.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
 		setTitle("Login");
@@ -74,4 +79,5 @@ public class Login_User extends JFrame {
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		LoginPane.setLayout(gl_LoginPane);
 	}
+
 }
