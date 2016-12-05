@@ -66,7 +66,6 @@ public class Client {
 				System.out.println(userName);
 				
 				if (userName.equals(name)) {
-					System.out.println("close");
 					betting.setVisible(false);
 					currentP -= point;
 				}
