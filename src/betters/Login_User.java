@@ -1,6 +1,7 @@
 package betters;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -32,18 +33,28 @@ public class Login_User extends JFrame {
 	private JPanel LoginPane;
 	private JTextField EnterName;
 	private JButton btnSubmit;
+	ImageIcon bg;
 	public String Enter_UserName = "";
 	
 	public Login_User(PrintWriter pt) throws IOException{
 		this.out = pt;
+		bg = new ImageIcon("/betters/src/image/LOGIN.png");
 
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Login.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 294, 180);
-		LoginPane = new JPanel();
-		LoginPane.setBackground(Color.WHITE);
+		LoginPane= new JPanel(){
+			public void paintComponent(Graphics g){
+				g.drawImage(bg.getImage(), 0, 0, null);
+				Dimension d = getSize();
+				g.drawImage(bg.getImage(), 0, 0, d.width, d.height, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
+		};
+		LoginPane.setBackground(Color.BLACK);
 		LoginPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(LoginPane);
 
@@ -79,5 +90,4 @@ public class Login_User extends JFrame {
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		LoginPane.setLayout(gl_LoginPane);
 	}
-
 }
