@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 public class Quiz extends JFrame {
 	public boolean client_ready = false;
+	JTextArea ProblemArea;
 	JTextArea ChattingArea;
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
@@ -26,6 +27,10 @@ public class Quiz extends JFrame {
 	private JPanel QuizPane;
 	private JTextField ChattingUser;
 	private PrintWriter out;
+	
+	public void showProblem(String problem) {
+		ProblemArea.setText(problem);
+	}
 
 	public void setLbl(DataBox db) {
 		lblMaximumRaise.setText("Maximum Raise point : " + db.maxP);;
@@ -62,10 +67,6 @@ public class Quiz extends JFrame {
 		});
 
 		JButton btnReady = new JButton("Ready");
-		btnReady.setSelectedIcon(null);
-		btnReady.setContentAreaFilled(false);
-		btnReady.setBorderPainted(false);
-		btnReady.setFocusPainted(false);
 		btnReady.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -82,7 +83,6 @@ public class Quiz extends JFrame {
 		});
 		btnReady.setBounds(477, 287, 138, 47);
 		btnReady.setBackground(new Color(23, 85, 110));
-		btnReady.setIcon(new ImageIcon("../image/ready.png"));
 
 		JButton btnExit = new JButton("Exit");
 		btnExit.setBounds(476, 346, 116, 42);
@@ -94,7 +94,7 @@ public class Quiz extends JFrame {
 		});
 		btnExit.setBackground(new Color(255, 235, 205));
 
-		JTextArea ProblemArea = new JTextArea();
+		ProblemArea = new JTextArea();
 		ProblemArea.setEditable(false);
 		ProblemArea.setForeground(new Color(255, 255, 240));
 		ProblemArea.setBackground(new Color(23, 85, 110));

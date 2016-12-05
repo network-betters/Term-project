@@ -19,7 +19,7 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < room_num; i++) {
 			dataBoxes.add(new DataBox());
-			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
+			rooms.add(new Room("movies", "type", 100, 50, dataBoxes.get(i)));
 			rooms.get(i).start();
 		}
 
@@ -88,7 +88,7 @@ public class Server {
 							// enter the room
 							msg = dataBoxes.get(room).enter(out, Integer.parseInt(in.readLine()));
 
-							for (PrintWriter temp : writers) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println(msg);
 							}
 						}
@@ -102,8 +102,9 @@ public class Server {
 						}
 					} else if (msg.startsWith("READY")) {
 						if (dataBoxes.get(room).getReady()) {
-							for (PrintWriter temp : writers) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("START");
+								temp.println(dataBoxes.get(room).getQuiz());
 							}
 						}
 					}

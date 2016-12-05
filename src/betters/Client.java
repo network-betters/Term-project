@@ -53,6 +53,9 @@ public class Client {
 				quiz.setLbl(dataBox);
 			} else if(msg.startsWith("MESSAGE")){
 				quiz.chat(msg.substring(7));
+			} else if(msg.startsWith("START")) {
+				dataBox.setQuiz(in.readLine());
+				quiz.showProblem(dataBox.problem.getProblem());
 			}
 		}
 	}

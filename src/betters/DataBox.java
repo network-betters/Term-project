@@ -6,9 +6,9 @@ import java.util.StringTokenizer;
 
 public class DataBox {
 	StringTokenizer token;
-	public HashSet<PrintWriter> out = new HashSet<PrintWriter>(); 
+	public HashSet<PrintWriter> out = new HashSet<PrintWriter>();
 	private boolean start = false;
-	private Problem problem;
+	public Problem problem = new Problem();
 	private int userNum = 0;
 	private int readyNum = 0;
 	private int entranceFee = 0;
@@ -17,7 +17,8 @@ public class DataBox {
 	public int maxP = 0; // maximum point for betting
 	String msg;
 
-	public DataBox setRoom(int entranceFee, int minRR) {
+	public DataBox setRoom(Problem problem, int entranceFee, int minRR) {
+		this.problem = problem;
 		this.entranceFee = entranceFee;
 		this.minRR = minRR;
 
@@ -29,14 +30,14 @@ public class DataBox {
 	}
 
 	public String enter(PrintWriter pt, int point) {
-		if(!out.contains(pt)){
+		if (!out.contains(pt)) {
 			userNum++;
-			
+
 			out.add(pt);
-			
-			//update cumulative point
+
+			// update cumulative point
 			cumulativeP += entranceFee;
-			
+
 			// set maximum point
 			if (userNum == 1) {
 				maxP = point;
@@ -49,7 +50,7 @@ public class DataBox {
 
 	public void leave(PrintWriter pt) {
 		out.remove(pt);
-		
+
 		userNum--;
 	}
 
@@ -70,4 +71,13 @@ public class DataBox {
 		return (readyNum == userNum) ? true : false;
 	}
 
+	public String getQuiz() {
+		return problem.getProblem() + ":" + problem.getSub_topic();
+	}
+
+	public void setQuiz(String str) {
+		token = new StringTokenizer(str, ":");
+		problem.setProblem(token.nextToken());
+		problem.setSub_topic(token.nextToken());
+	}
 }

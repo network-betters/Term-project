@@ -16,7 +16,7 @@ public class Room extends Thread {
 			this.entranceFee = entranceFee;
 			this.minRR = minRR;
 
-			this.dataBox = dataBox.setRoom(entranceFee, minRR);
+			this.dataBox = dataBox.setRoom(problem, entranceFee, minRR);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
