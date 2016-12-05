@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.GroupLayout;
@@ -12,6 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -25,7 +29,7 @@ public class Login_User extends JFrame {
 	private JButton btnSubmit;
 	public String Enter_UserName = "";
 	
-	public Login_User(PrintWriter pt) {
+	public Login_User(PrintWriter pt){
 		this.out = pt;
 		
 		setIconImage(Toolkit.getDefaultToolkit()
@@ -48,7 +52,10 @@ public class Login_User extends JFrame {
 		btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				out.println(EnterName.getText());
+				if(EnterName.getText().isEmpty())
+					JOptionPane.showMessageDialog(null, "Name is empty. Write please.");
+				else
+					out.println(EnterName.getText());
 			}
 		});
 		GroupLayout gl_LoginPane = new GroupLayout(LoginPane);

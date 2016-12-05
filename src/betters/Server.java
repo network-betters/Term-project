@@ -61,10 +61,11 @@ public class Server {
 				out = new PrintWriter(socket.getOutputStream(), true);
 				int room = 0;
 
-				do {
+				name = in.readLine();
+				 while (names.contains(name)){
+					 out.println("SUBMIT");
 					name = in.readLine();
-					out.println("SUBMIT");
-				} while (names.contains(name));
+				}
 
 				out.println("LOGIN " + name);
 				names.add(name);

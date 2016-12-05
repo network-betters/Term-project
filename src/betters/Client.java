@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 public class Client {
 	Login_User login;
 	MainMenu mainmenu;
@@ -32,7 +34,8 @@ public class Client {
 			String msg = in.readLine();
 			
 			if(msg.equals("SUBMIT")) {
-				//로그인 실패 했을 때				
+				//로그인 실패 했을 때			
+				JOptionPane.showMessageDialog(null, "This name is already existed. Write over again.");
 			} else if(msg.startsWith("LOGIN")) {
 				//sign in success!
 				userName = msg.substring(6);
