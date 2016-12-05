@@ -36,7 +36,7 @@ public class ProblemDao {
 
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost/betters", "root", "12345");
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost/betters", "root", "zeroness120");
 
 		return c;
 	}

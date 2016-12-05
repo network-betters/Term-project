@@ -19,7 +19,7 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < room_num; i++) {
 			dataBoxes.add(new DataBox());
-			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
+			rooms.add(new Room("movies", "type", 100, 50, dataBoxes.get(i)));
 			rooms.get(i).start();
 		}
 
@@ -60,11 +60,14 @@ public class Server {
 				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				out = new PrintWriter(socket.getOutputStream(), true);
 				int room = 0;
+				int index = 0;
 
-				do {
-					name = in.readLine();
+				name = in.readLine();
+
+				while (names.contains(name)) {
 					out.println("SUBMIT");
-				} while (names.contains(name));
+					name = in.readLine();
+				}
 
 				out.println("LOGIN " + name);
 				names.add(name);
@@ -102,10 +105,20 @@ public class Server {
 						}
 					} else if (msg.startsWith("READY")) {
 						if (dataBoxes.get(room).getReady()) {
-							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("START");
-								temp.println(dataBoxes.get(room).getQuiz());
-							}
+							dataBoxes.get(room).out.get(index++).println("START");
+						}
+					} else if (msg.startsWith("BETTING")) {
+						if (index < writers.size()) {
+							dataBoxes.get(room).out.get(index++).println("START");
+						} else {
+							out.println("DONE");
+							break;
+						}
+
+						msg = dataBoxes.get(room).raise(msg.substring(8));
+
+						for (PrintWriter temp : dataBoxes.get(room).out) {
+							temp.println(msg);
 						}
 					}
 				}
