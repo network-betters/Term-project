@@ -66,58 +66,61 @@ public class Server {
 
 				while (names.contains(name)) {
 					out.println("SUBMIT");
-					name = in.readLine();
-				}
+					while (names.contains(name)) {
+						out.println("SUBMIT");
+						name = in.readLine();
+					}
 
-				out.println("LOGIN " + name);
-				names.add(name);
-				writers.add(out);
+					out.println("LOGIN " + name);
+					names.add(name);
+					writers.add(out);
 
-				while (true) {
-					String msg = in.readLine();
-					System.out.println(msg);
-					if (msg.startsWith("ENTER")) {
-						// client access to the room
-						room = Integer.parseInt(msg.substring(6, 7));
-						if (dataBoxes.get(room).getEntranceFee() > Integer.parseInt(msg.substring(8))
-								&& !dataBoxes.get(room).getStatus()) {
-							out.println("FAILED");
-						} else {
-							out.println("ENTERED");
+					while (true) {
+						String msg = in.readLine();
+						System.out.println(msg);
+						if (msg.startsWith("ENTER")) {
+							// client access to the room
+							room = Integer.parseInt(msg.substring(6, 7));
+							if (dataBoxes.get(room).getEntranceFee() > Integer.parseInt(msg.substring(8))
+									&& !dataBoxes.get(room).getStatus()) {
+								out.println("FAILED");
+							} else {
+								out.println("ENTERED");
 
-							// charge entrance fee
-							out.println(dataBoxes.get(room).getEntranceFee());
+								// charge entrance fee
+								out.println(dataBoxes.get(room).getEntranceFee());
 
-							// enter the room
-							msg = dataBoxes.get(room).enter(out, Integer.parseInt(in.readLine()));
+								// enter the room
+								msg = dataBoxes.get(room).enter(out, Integer.parseInt(in.readLine()));
+
+								for (PrintWriter temp : dataBoxes.get(room).out) {
+									temp.println(msg);
+								}
+							}
+						} else if (msg.startsWith("EXIT")) {
+							for (DataBox temp : dataBoxes) {
+								temp.leave(out);
+							}
+						} else if (msg.startsWith("MESSAGE")) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("MESSAGE " + name + ": " + msg.substring(7));
+							}
+						} else if (msg.startsWith("READY")) {
+							System.out.println(index);
+							if (dataBoxes.get(room).getReady()) {
+								dataBoxes.get(room).out.get(index++).println("START");
+							}
+						} else if (msg.startsWith("BETTING")) {
+							if (index < writers.size()) {
+								System.out.println(index);
+								dataBoxes.get(room).out.get(index++).println("START");
+							}
+
+							msg = dataBoxes.get(room).raise(msg.substring(8));
 
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println(msg);
 							}
-						}
-					} else if (msg.startsWith("EXIT")) {
-						for (DataBox temp : dataBoxes) {
-							temp.leave(out);
-						}
-					} else if (msg.startsWith("MESSAGE")) {
-						for (PrintWriter temp : dataBoxes.get(room).out) {
-							temp.println("MESSAGE " + name + ": " + msg.substring(7));
-						}
-					} else if (msg.startsWith("READY")) {
-						System.out.println(index);
-						if (dataBoxes.get(room).getReady()) {
-							dataBoxes.get(room).out.get(index++).println("START");
-						}
-					} else if (msg.startsWith("BETTING")) {
-						if (index < writers.size()) {
-							System.out.println(index);
-							dataBoxes.get(room).out.get(index++).println("START");
-						} 
-						
-						msg = dataBoxes.get(room).raise(msg.substring(8));
-
-						for (PrintWriter temp : dataBoxes.get(room).out) {
-							temp.println(msg);
 						}
 					}
 				}
