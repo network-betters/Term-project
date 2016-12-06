@@ -20,7 +20,7 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		for (int i = 0; i < room_num; i++) {
 			dataBoxes.add(new DataBox());
-			rooms.add(new Room("movies", "type", 100, 50, dataBoxes.get(i)));
+			rooms.add(new Room("topic", "type", 100, 50, dataBoxes.get(i)));
 			rooms.get(i).start();
 		}
 

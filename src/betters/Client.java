@@ -13,6 +13,7 @@ public class Client {
 	MainMenu mainmenu;
 	Quiz quiz;
 	Betting betting;
+	NotBetting notbetting;
 	private Socket socket;
 	BufferedReader in;
 	PrintWriter out;
@@ -61,7 +62,9 @@ public class Client {
 				quiz.chat(msg.substring(7));
 			} else if (msg.startsWith("START")) {
 				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
+				notbetting = new NotBetting();
 				betting.setVisible(true);
+				notbetting.setVisible(true);
 			} else if (msg.startsWith("RAISE")) {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
 				String name = token.nextToken();
