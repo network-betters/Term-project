@@ -31,6 +31,7 @@ public class Quiz extends JFrame {
 	private JTextField ChattingUser;
 	private PrintWriter out;
 	private ImageIcon icon;
+	JButton btnReady;
 	
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
@@ -78,7 +79,7 @@ public class Quiz extends JFrame {
 			}
 		});
 
-		JButton btnReady = new JButton("Ready");
+		btnReady = new JButton();
 		btnReady.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -86,8 +87,12 @@ public class Quiz extends JFrame {
 					if (client_ready == false) {
 						client_ready = true;
 						out.println("READY");
+						btnReady.setIcon(new ImageIcon("./src/image/readyp.png"));
 					} else
+					{
+						btnReady.setIcon(new ImageIcon("./src/image/ready.png"));
 						client_ready = false;
+					}
 				} catch (Exception exc) {
 					exc.printStackTrace();
 				}
@@ -130,7 +135,6 @@ public class Quiz extends JFrame {
 		
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
-		//QuizPane.add(ChattingArea);
 		QuizPane.add(ProblemArea);
 		QuizPane.add(btnReady);
 		QuizPane.add(btnExit);
