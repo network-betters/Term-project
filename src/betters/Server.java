@@ -112,6 +112,10 @@ public class Server {
 						if (index < writers.size()) {
 							System.out.println(index);
 							dataBoxes.get(room).out.get(index++).println("START");
+						} else {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("DONE");
+							}
 						}
 
 						msg = dataBoxes.get(room).raise(msg.substring(8));
