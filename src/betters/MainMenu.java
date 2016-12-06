@@ -35,7 +35,7 @@ public class MainMenu extends JFrame {
    }
    
    public MainMenu(String Username, PrintWriter pw, int point) {
-      icon=new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//MainMenu.png");
+      icon=new ImageIcon("./src/image/MainMenu.png");
       
       this.out = pw;
       this.currentP = point;
@@ -57,158 +57,141 @@ public class MainMenu extends JFrame {
       setContentPane(MainManuPane);
       MainManuPane.setLayout(null);
 
-      JLabel lblChoice = new JLabel("");
-      lblChoice.setBounds(39, 33, 174, 28);
-      lblChoice.setFont(new Font("Elephant", Font.BOLD, 22));
-      MainManuPane.add(lblChoice);
-
-      lblYourExtraPoint = new JLabel("Your Extra Point : " + currentP);
-      lblYourExtraPoint.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
-      lblYourExtraPoint.setBounds(294, 12, 207, 18);
+      lblYourExtraPoint = new JLabel("" + currentP);
+      lblYourExtraPoint.setForeground(Color.WHITE);
+      lblYourExtraPoint.setFont(new Font("Bauhaus 93", Font.PLAIN, 20));
+      lblYourExtraPoint.setBounds(504, 12, 207, 18);
       MainManuPane.add(lblYourExtraPoint);
 
-      JButton btnchoMoive = new JButton("Moive");
-      btnchoMoive.addActionListener(new ActionListener() {
+      JButton btnchoMovie = new JButton("");
+      btnchoMovie.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 0 " + currentP);
          }
       });
-      btnchoMoive.setBounds(49, 85, 127, 36);
-      MainManuPane.add(btnchoMoive);
+      btnchoMovie.setBounds(49, 85, 140, 36);
+      btnchoMovie.setContentAreaFilled(false);
+      btnchoMovie.setBorderPainted(false);
+      btnchoMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
+      btnchoMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
+      MainManuPane.add(btnchoMovie);
 
-      JButton btnchoProgram = new JButton("Programming");
+      JButton btnchoProgram = new JButton("");
       btnchoProgram.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 1 " + currentP);
          }
       });
-      btnchoProgram.setBounds(48, 140, 128, 36);
+      btnchoProgram.setBounds(48, 140, 140, 36);
+      btnchoProgram.setContentAreaFilled(false);
+      btnchoProgram.setBorderPainted(false);
+      btnchoProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
+      btnchoProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
       MainManuPane.add(btnchoProgram);
 
-      JButton btnchoSocial = new JButton();
-      btnchoSocial.addActionListener(new ActionListener() {
+      JButton btnchoGame = new JButton();
+      btnchoGame.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 2 " + currentP);
          }
       });
-      btnchoSocial.setBounds(49, 195, 140, 36);
-      btnchoSocial.setContentAreaFilled(false);
-      btnchoSocial.setBorderPainted(false);
-      btnchoSocial.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
-      MainManuPane.add(btnchoSocial);
+      btnchoGame.setBounds(49, 195, 140, 36);
+      btnchoGame.setContentAreaFilled(false);
+      btnchoGame.setBorderPainted(false);
+      btnchoGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
+      btnchoGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      MainManuPane.add(btnchoGame);
 
-      JLabel lblSubjective = new JLabel("");
-      lblSubjective.setFont(new Font("MV Boli", Font.BOLD, 22));
-      lblSubjective.setBounds(227, 33, 174, 28);
-      MainManuPane.add(lblSubjective);
-
-      JButton btnSubMovie = new JButton("Movie");
+      JButton btnSubMovie = new JButton("");
       btnSubMovie.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 3 " + currentP);
          }
       });
-      btnSubMovie.setBounds(253, 85, 127, 36);
+      btnSubMovie.setBounds(265, 85, 127, 36);
+      btnSubMovie.setContentAreaFilled(false);
+      btnSubMovie.setBorderPainted(false);
+      btnSubMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
+      btnSubMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
       MainManuPane.add(btnSubMovie);
 
-      JButton btnSubProgramming = new JButton("Programming");
-      btnSubProgramming.addActionListener(new ActionListener() {
+      JButton btnSubProgram = new JButton("");
+      btnSubProgram.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 4 " + currentP);
          }
       });
-      btnSubProgramming.setBounds(253, 140, 127, 36);
-      MainManuPane.add(btnSubProgramming);
+      btnSubProgram.setBounds(265, 140, 127, 36);
+      btnSubProgram.setContentAreaFilled(false);
+      btnSubProgram.setBorderPainted(false);
+      btnSubProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
+      btnSubProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
+      MainManuPane.add(btnSubProgram);
 
-      JButton btnSubSocial = new JButton("Social");
-      btnSubSocial.addActionListener(new ActionListener() {
+      JButton btnSubGame = new JButton("");
+      btnSubGame.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 5 " + currentP);
          }
       });
-      btnSubSocial.setBounds(253, 195, 127, 36);
-      MainManuPane.add(btnSubSocial);
+      btnSubGame.setBounds(265, 195, 127, 36);
+      btnSubGame.setContentAreaFilled(false);
+      btnSubGame.setBorderPainted(false);
+      btnSubGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
+      btnSubGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      MainManuPane.add(btnSubGame);
 
-      JLabel lblSpeed = new JLabel("");
-      lblSpeed.setFont(new Font("Harlow Solid Italic", Font.BOLD, 22));
-      lblSpeed.setBounds(444, 35, 116, 28);
-      MainManuPane.add(lblSpeed);
-
-      JButton btnSpMovie = new JButton("Moive");
+      JButton btnSpMovie = new JButton("");
       btnSpMovie.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 6 " + currentP);
          }
       });
-      btnSpMovie.setBounds(444, 85, 127, 36);
+      btnSpMovie.setBounds(465, 85, 127, 36);
+      btnSpMovie.setContentAreaFilled(false);
+      btnSpMovie.setBorderPainted(false);
+      btnSpMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
+      btnSpMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
       MainManuPane.add(btnSpMovie);
 
-      JButton btnSpProgramming = new JButton("Programming");
-      btnSpProgramming.addActionListener(new ActionListener() {
+      JButton btnSpProgram = new JButton("");
+      btnSpProgram.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 7 " + currentP);
          }
       });
-      btnSpProgramming.setBounds(444, 140, 127, 36);
-      MainManuPane.add(btnSpProgramming);
+      btnSpProgram.setBounds(465, 140, 127, 36);
+      btnSpProgram.setContentAreaFilled(false);
+      btnSpProgram.setBorderPainted(false);
+      btnSpProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
+      btnSpProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
+      MainManuPane.add(btnSpProgram);
 
-      JButton btnSpSocial = new JButton("Social");
-      btnSpSocial.addActionListener(new ActionListener() {
+      JButton btnSpGame = new JButton("");
+      btnSpGame.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("ENTER 8 " + currentP);
          }
       });
-      btnSpSocial.setBounds(444, 195, 127, 36);
-      MainManuPane.add(btnSpSocial);
+      btnSpGame.setBounds(465, 195, 127, 36);
+      btnSpGame.setContentAreaFilled(false);
+      btnSpGame.setBorderPainted(false);
+      btnSpGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
+      btnSpGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      MainManuPane.add(btnSpGame);
 
-      JLabel lblchoEnter = new JLabel("");
-      lblchoEnter.setBounds(46, 214, 147, 18);
-      MainManuPane.add(lblchoEnter);
-
-      JLabel lblchoRaise = new JLabel("");
-      lblchoRaise.setBounds(46, 239, 149, 18);
-      MainManuPane.add(lblchoRaise);
-
-      JLabel lblSubEnter = new JLabel("");
-      lblSubEnter.setBounds(250, 212, 157, 18);
-      MainManuPane.add(lblSubEnter);
-
-      JLabel lblSubRaise = new JLabel("");
-      lblSubRaise.setBounds(250, 239, 151, 18);
-      MainManuPane.add(lblSubRaise);
-
-      JLabel lblSpEnter = new JLabel("");
-      lblSpEnter.setBounds(444, 212, 157, 18);
-      MainManuPane.add(lblSpEnter);
-
-      JLabel lblSpRaise = new JLabel("");
-      lblSpRaise.setBounds(444, 239, 157, 18);
-      MainManuPane.add(lblSpRaise);
-
-      JButton btnPractice = new JButton("Just Join!");
+      JButton btnPractice = new JButton("");
       btnPractice.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
             out.println("PRACTICE");
          }
       });
-      btnPractice.setBounds(627, 68, 150, 132);
+      btnPractice.setBounds(655, 95, 120, 120);
       btnPractice.setContentAreaFilled(false);
       btnPractice.setBorderPainted(false);
-      //btnPractice.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//quiz.png"));
+      btnPractice.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//join.png"));
+      btnPractice.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//join_p.png"));
       MainManuPane.add(btnPractice);
-
-      JLabel lblPractice = new JLabel("");
-      lblPractice.setFont(new Font("Hobo BT", Font.BOLD, 22));
-      lblPractice.setBounds(627, 43, 150, 18);
-      MainManuPane.add(lblPractice);
-
-      JLabel lblNoEnterFee = new JLabel("");
-      lblNoEnterFee.setBounds(652, 214, 110, 18);
-      MainManuPane.add(lblNoEnterFee);
-
-      JLabel lblGetPoints = new JLabel("");
-      lblGetPoints.setBounds(652, 239, 101, 18);
-      MainManuPane.add(lblGetPoints);
 
       JLabel lblWelcome = new JLabel(Username);
       lblWelcome.setBounds(137, 11, 250, 19);

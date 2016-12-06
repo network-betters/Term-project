@@ -114,6 +114,7 @@ public class Quiz extends JFrame {
 
 		ChattingArea = new JTextArea();
 		ChattingArea.setBounds(14, 240, 449, 156);
+		ChattingArea.setEditable(false);
 		scroll = new JScrollPane(ChattingArea);
 		scroll.setOpaque(false);
 		scroll.setBounds(14, 240, 449, 156);
