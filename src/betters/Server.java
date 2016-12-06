@@ -110,16 +110,15 @@ public class Server {
 						}
 					} else if (msg.startsWith("BETTING")) {
 						if (index < writers.size()) {
-							System.out.println(index);
-							dataBoxes.get(room).out.get(index++).println("START");
-						} else {
+							dataBoxes.get(room).out.get(index).println("START");
+						} else{
 							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("DONE");
+								temp.println("DONE " + dataBoxes.get(room).getQuiz());
 							}
 						}
 
-						msg = dataBoxes.get(room).raise(msg.substring(8));
-
+						msg = dataBoxes.get(room).raise(index++, msg.substring(8));
+						
 						for (PrintWriter temp : dataBoxes.get(room).out) {
 							temp.println(msg);
 						}

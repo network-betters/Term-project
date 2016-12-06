@@ -19,6 +19,7 @@ public class Client {
 	DataBox dataBox;
 	private int currentP;
 	String userName;
+	private int raise = 0;
 
 	public Client() throws Exception {
 		socket = new Socket("127.0.0.1", 827);
@@ -65,8 +66,6 @@ public class Client {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
 				String name = token.nextToken();
 				int point = Integer.parseInt(token.nextToken());
-
-				System.out.println(userName);
 				
 				if (userName.equals(name)) {
 					betting.setVisible(false);
@@ -76,6 +75,11 @@ public class Client {
 				dataBox.cumulativeP += point;
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(dataBox);
+			} else if (msg.startsWith("CALL")) {
+				
+			} else if (msg.startsWith("DONE")) {
+				dataBox.setQuiz(msg.substring(5));
+				quiz.showProblem(dataBox.problem.getProblem());
 			}
 		}
 	}

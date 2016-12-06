@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,6 +35,11 @@ public class Quiz extends JFrame {
 	
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
+	}
+	
+	public void showProblem(String problem, ArrayList<String> example) {
+		ProblemArea.append(problem + "\n");
+		ProblemArea.append(example.get(0) + "\t" + example.get(1) + example.get(2));
 	}
 
 	public void setLbl(DataBox db) {
@@ -119,6 +125,7 @@ public class Quiz extends JFrame {
 
 		ProblemArea = new JTextArea();
 		ProblemArea.setEditable(false);
+		ProblemArea.setFont(new Font("Bauhaus 93", Font.PLAIN, 18));
 		ProblemArea.setForeground(new Color(255, 255, 240));
 		ProblemArea.setBackground(new Color(23, 85, 110));
 		ProblemArea.setBounds(14, 83, 449, 145);

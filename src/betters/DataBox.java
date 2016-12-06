@@ -15,6 +15,7 @@ public class DataBox {
 	public int cumulativeP = 0; // current point in this room
 	public int minRR = 0; // minimum raise rate
 	public int maxP = 0; // maximum point for betting
+	public int maxRR = 0;
 	String msg;
 
 	public DataBox setRoom(Problem problem, int entranceFee, int minRR) {
@@ -82,12 +83,24 @@ public class DataBox {
 		problem.setSub_topic(token.nextToken());
 	}
 	
-	public String raise(String str) {
+	public String raise(int index, String str) {
 		int point;
 		
 		token = new StringTokenizer(str, ":");
 		token.nextToken();
 		point = Integer.parseInt(token.nextToken());
+		
+		if(index == 0) {
+			maxRR = point;
+		}
+		
+		if(point > maxRR) {
+			for(int i = 0; i < index; i++) {
+				out.get(i).println("CALL " + point);
+			}
+			
+			maxRR = point;
+		}
 		
 		cumulativeP += point;
 		

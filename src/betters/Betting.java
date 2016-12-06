@@ -21,6 +21,10 @@ public class Betting extends JFrame {
 	private PrintWriter out;	
 	private JPanel contentPane;
 	private JTextField Raise;
+	
+	public void setMaxP(int point) {
+		maxP = point;
+	}
 
 	/**
 	 * Create the frame.
