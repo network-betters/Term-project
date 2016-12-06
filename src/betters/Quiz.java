@@ -49,7 +49,7 @@ public class Quiz extends JFrame {
 
 	public Quiz(PrintWriter pw) {
 		this.out = pw;
-		icon = new ImageIcon("C://Users//À¯¹Î//Documents//GitHub//Term-project//src//image//Quiz.png");
+		icon = new ImageIcon("./src/image/Quiz.png");
 
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Quiz.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
@@ -94,6 +94,10 @@ public class Quiz extends JFrame {
 			}
 		});
 		btnReady.setBounds(477, 330, 116, 42);
+		btnReady.setContentAreaFilled(false);
+		btnReady.setBorderPainted(false);
+		btnReady.setIcon(new ImageIcon("./src/image/ready.png"));
+		btnReady.setRolloverIcon(new ImageIcon("./src/image/readyp.png"));
 		btnReady.setBackground(new Color(23, 85, 110));
 
 		JButton btnExit = new JButton("Exit");
@@ -104,6 +108,9 @@ public class Quiz extends JFrame {
 				dispose();
 			}
 		});
+		btnExit.setContentAreaFilled(false);
+		btnExit.setBorderPainted(false);
+		btnExit.setIcon(new ImageIcon("./src/image/exit.png"));
 		btnExit.setBackground(new Color(255, 235, 205));
 
 		ProblemArea = new JTextArea();

@@ -31,7 +31,7 @@ public class MainMenu extends JFrame {
    
    public void setExtraPoint(int point) {
       currentP = point;
-      lblYourExtraPoint.setText("Your Extra Point : " + currentP);
+      lblYourExtraPoint.setText("" + currentP);
    }
    
    public MainMenu(String Username, PrintWriter pw, int point) {
@@ -72,8 +72,8 @@ public class MainMenu extends JFrame {
       btnchoMovie.setBounds(49, 85, 140, 36);
       btnchoMovie.setContentAreaFilled(false);
       btnchoMovie.setBorderPainted(false);
-      btnchoMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
-      btnchoMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
+      btnchoMovie.setIcon(new ImageIcon("./src/image/movie.png"));
+      btnchoMovie.setRolloverIcon(new ImageIcon("./src/image/movie_p.png"));
       MainManuPane.add(btnchoMovie);
 
       JButton btnchoProgram = new JButton("");
@@ -85,8 +85,8 @@ public class MainMenu extends JFrame {
       btnchoProgram.setBounds(48, 140, 140, 36);
       btnchoProgram.setContentAreaFilled(false);
       btnchoProgram.setBorderPainted(false);
-      btnchoProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
-      btnchoProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
+      btnchoProgram.setIcon(new ImageIcon("./src/image/pro.png"));
+      btnchoProgram.setRolloverIcon(new ImageIcon("./src/image/pro_p.png"));
       MainManuPane.add(btnchoProgram);
 
       JButton btnchoGame = new JButton();
@@ -98,8 +98,8 @@ public class MainMenu extends JFrame {
       btnchoGame.setBounds(49, 195, 140, 36);
       btnchoGame.setContentAreaFilled(false);
       btnchoGame.setBorderPainted(false);
-      btnchoGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
-      btnchoGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      btnchoGame.setIcon(new ImageIcon("./src/image/game.png"));
+      btnchoGame.setRolloverIcon(new ImageIcon("./src/image/game_p.png"));
       MainManuPane.add(btnchoGame);
 
       JButton btnSubMovie = new JButton("");
@@ -111,8 +111,8 @@ public class MainMenu extends JFrame {
       btnSubMovie.setBounds(265, 85, 127, 36);
       btnSubMovie.setContentAreaFilled(false);
       btnSubMovie.setBorderPainted(false);
-      btnSubMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
-      btnSubMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
+      btnSubMovie.setIcon(new ImageIcon("./src/image/movie.png"));
+      btnSubMovie.setRolloverIcon(new ImageIcon("./src/image/movie_p.png"));
       MainManuPane.add(btnSubMovie);
 
       JButton btnSubProgram = new JButton("");
@@ -124,8 +124,8 @@ public class MainMenu extends JFrame {
       btnSubProgram.setBounds(265, 140, 127, 36);
       btnSubProgram.setContentAreaFilled(false);
       btnSubProgram.setBorderPainted(false);
-      btnSubProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
-      btnSubProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
+      btnSubProgram.setIcon(new ImageIcon("./src/image/pro.png"));
+      btnSubProgram.setRolloverIcon(new ImageIcon("./src/image/pro_p.png"));
       MainManuPane.add(btnSubProgram);
 
       JButton btnSubGame = new JButton("");
@@ -137,8 +137,8 @@ public class MainMenu extends JFrame {
       btnSubGame.setBounds(265, 195, 127, 36);
       btnSubGame.setContentAreaFilled(false);
       btnSubGame.setBorderPainted(false);
-      btnSubGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
-      btnSubGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      btnSubGame.setIcon(new ImageIcon("./src/image/game.png"));
+      btnSubGame.setRolloverIcon(new ImageIcon("./src/image/game_p.png"));
       MainManuPane.add(btnSubGame);
 
       JButton btnSpMovie = new JButton("");
@@ -150,8 +150,8 @@ public class MainMenu extends JFrame {
       btnSpMovie.setBounds(465, 85, 127, 36);
       btnSpMovie.setContentAreaFilled(false);
       btnSpMovie.setBorderPainted(false);
-      btnSpMovie.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie.png"));
-      btnSpMovie.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//movie_p.png"));
+      btnSpMovie.setIcon(new ImageIcon("./src/image/movie.png"));
+      btnSpMovie.setRolloverIcon(new ImageIcon("./src/image/movie_p.png"));
       MainManuPane.add(btnSpMovie);
 
       JButton btnSpProgram = new JButton("");
@@ -163,8 +163,8 @@ public class MainMenu extends JFrame {
       btnSpProgram.setBounds(465, 140, 127, 36);
       btnSpProgram.setContentAreaFilled(false);
       btnSpProgram.setBorderPainted(false);
-      btnSpProgram.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro.png"));
-      btnSpProgram.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//pro_p.png"));
+      btnSpProgram.setIcon(new ImageIcon("./src/image/pro.png"));
+      btnSpProgram.setRolloverIcon(new ImageIcon("./src/image/pro_p.png"));
       MainManuPane.add(btnSpProgram);
 
       JButton btnSpGame = new JButton("");
@@ -176,8 +176,8 @@ public class MainMenu extends JFrame {
       btnSpGame.setBounds(465, 195, 127, 36);
       btnSpGame.setContentAreaFilled(false);
       btnSpGame.setBorderPainted(false);
-      btnSpGame.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game.png"));
-      btnSpGame.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//game_p.png"));
+      btnSpGame.setIcon(new ImageIcon("./src/image/game.png"));
+      btnSpGame.setRolloverIcon(new ImageIcon("./src/image/game_p.png"));
       MainManuPane.add(btnSpGame);
 
       JButton btnPractice = new JButton("");
@@ -189,8 +189,8 @@ public class MainMenu extends JFrame {
       btnPractice.setBounds(655, 95, 120, 120);
       btnPractice.setContentAreaFilled(false);
       btnPractice.setBorderPainted(false);
-      btnPractice.setIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//join.png"));
-      btnPractice.setRolloverIcon(new ImageIcon("C://Users//嶸團//Documents//GitHub//Term-project//src//image//join_p.png"));
+      btnPractice.setIcon(new ImageIcon("./src/image/join.png"));
+      btnPractice.setRolloverIcon(new ImageIcon("./src/image/join_p.png"));
       MainManuPane.add(btnPractice);
 
       JLabel lblWelcome = new JLabel(Username);
