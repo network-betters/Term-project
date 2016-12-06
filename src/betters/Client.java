@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
+import javax.swing.JOptionPane;
+
 public class Client {
 	Login_User login;
 	MainMenu mainmenu;
@@ -35,6 +37,7 @@ public class Client {
 			System.out.println(msg);
 			if (msg.equals("SUBMIT")) {
 				// 로그인 실패 했을 때
+				JOptionPane.showMessageDialog(null, "This nick name is already existed. Write over again.");
 			} else if (msg.startsWith("LOGIN")) {
 				// sign in success!
 				userName = msg.substring(6);
@@ -64,7 +67,7 @@ public class Client {
 				int point = Integer.parseInt(token.nextToken());
 
 				System.out.println(userName);
-
+				
 				if (userName.equals(name)) {
 					betting.setVisible(false);
 					currentP -= point;
@@ -73,8 +76,6 @@ public class Client {
 				dataBox.cumulativeP += point;
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(dataBox);
-			} else if (msg.startsWith("DONE")) {
-				betting.setVisible(false);
 			}
 		}
 	}
@@ -83,4 +84,5 @@ public class Client {
 		Client client = new Client();
 		client.run();
 	}
+
 }

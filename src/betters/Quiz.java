@@ -30,6 +30,7 @@ public class Quiz extends JFrame {
 	private JTextField ChattingUser;
 	private PrintWriter out;
 	private ImageIcon icon;
+	JButton btnReady;
 	
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
@@ -48,7 +49,7 @@ public class Quiz extends JFrame {
 
 	public Quiz(PrintWriter pw) {
 		this.out = pw;
-		icon = new ImageIcon("./src//image//Quiz.png");
+		icon = new ImageIcon("./src/image/Quiz.png");
 
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(Quiz.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
@@ -77,7 +78,7 @@ public class Quiz extends JFrame {
 			}
 		});
 
-		JButton btnReady = new JButton("Ready");
+		btnReady = new JButton();
 		btnReady.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -85,14 +86,22 @@ public class Quiz extends JFrame {
 					if (client_ready == false) {
 						client_ready = true;
 						out.println("READY");
+						btnReady.setIcon(new ImageIcon("./src/image/readyp.png"));
 					} else
+					{
+						btnReady.setIcon(new ImageIcon("./src/image/ready.png"));
 						client_ready = false;
+					}
 				} catch (Exception exc) {
 					exc.printStackTrace();
 				}
 			}
 		});
 		btnReady.setBounds(477, 330, 116, 42);
+		btnReady.setContentAreaFilled(false);
+		btnReady.setBorderPainted(false);
+		btnReady.setIcon(new ImageIcon("./src/image/ready.png"));
+		btnReady.setRolloverIcon(new ImageIcon("./src/image/readyp.png"));
 		btnReady.setBackground(new Color(23, 85, 110));
 
 		JButton btnExit = new JButton("Exit");
@@ -103,6 +112,9 @@ public class Quiz extends JFrame {
 				dispose();
 			}
 		});
+		btnExit.setContentAreaFilled(false);
+		btnExit.setBorderPainted(false);
+		btnExit.setIcon(new ImageIcon("./src/image/exit.png"));
 		btnExit.setBackground(new Color(255, 235, 205));
 
 		ProblemArea = new JTextArea();
@@ -122,7 +134,6 @@ public class Quiz extends JFrame {
 		
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
-		//QuizPane.add(ChattingArea);
 		QuizPane.add(ProblemArea);
 		QuizPane.add(btnReady);
 		QuizPane.add(btnExit);

@@ -28,7 +28,7 @@ public class MainMenu extends JFrame {
    
    public void setExtraPoint(int point) {
       currentP = point;
-      lblYourExtraPoint.setText("Your Extra Point : " + currentP);
+      lblYourExtraPoint.setText("" + currentP);
    }
    
    public MainMenu(String Username, PrintWriter pw, int point) {
