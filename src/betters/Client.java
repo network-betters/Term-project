@@ -19,7 +19,7 @@ public class Client {
 	String userName;
 
 	public Client() throws Exception {
-		socket = new Socket("127.0.0.1", 827);
+		socket = new Socket("192.168.28.1", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
