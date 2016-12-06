@@ -211,9 +211,9 @@ public class MainMenu extends JFrame {
       MainManuPane.add(lblGetPoints);
 
       JLabel lblWelcome = new JLabel(Username);
-      lblWelcome.setBounds(137, 11, 250, 18);
+      lblWelcome.setBounds(137, 11, 250, 19);
       lblWelcome.setForeground(Color.WHITE);
-      lblWelcome.setFont(new Font("Bauhaus 93", Font.PLAIN, 20));
+      lblWelcome.setFont(new Font("Bauhaus 93", Font.PLAIN, 21));
       MainManuPane.add(lblWelcome);   
       }
    
