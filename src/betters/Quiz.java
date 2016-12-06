@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,7 @@ public class Quiz extends JFrame {
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
 	JLabel lblPoint;
+	JScrollPane scroll;
 	private JPanel QuizPane;
 	private JTextField ChattingUser;
 	private PrintWriter out;
@@ -40,6 +42,7 @@ public class Quiz extends JFrame {
 	
 	public void chat(String msg) {
 		ChattingArea.append(msg + "\n");
+		ChattingArea.setCaretPosition(ChattingArea.getDocument().getLength());
 	}
 
 	public Quiz(PrintWriter pw) {
@@ -102,10 +105,15 @@ public class Quiz extends JFrame {
 
 		ChattingArea = new JTextArea();
 		ChattingArea.setBounds(14, 196, 449, 156);
+		scroll = new JScrollPane(ChattingArea);
+		scroll.setOpaque(false);
+		scroll.setBounds(14, 196, 449, 156);
+		scroll.setViewportView(ChattingArea);
+		QuizPane.add(scroll);
 		
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
-		QuizPane.add(ChattingArea);
+		//QuizPane.add(ChattingArea);
 		QuizPane.add(ProblemArea);
 		QuizPane.add(btnReady);
 		QuizPane.add(btnExit);

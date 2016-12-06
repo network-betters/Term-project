@@ -7,189 +7,214 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+
 public class MainMenu extends JFrame {
-	final JLabel lblYourExtraPoint;
-	private JPanel MainManuPane;
-	private PrintWriter out;
-	private int currentP = 0;
+   final JLabel lblYourExtraPoint;
+   private JPanel MainManuPane;
+   private PrintWriter out;
+   private int currentP = 0;
+   
+   JScrollPane scrollPane;
+   ImageIcon icon;
+   
+   public void setExtraPoint(int point) {
+      currentP = point;
+      lblYourExtraPoint.setText("Your Extra Point : " + currentP);
+   }
+   
+   public MainMenu(String Username, PrintWriter pw, int point) {
+      icon=new ImageIcon("C://Users//À¯¹Î//Documents//GitHub//Term-project//src//image//MainMenu.png");
+      
+      this.out = pw;
+      this.currentP = point;
+      setForeground(Color.WHITE);
+      setIconImage(Toolkit.getDefaultToolkit()
+            .getImage(GUI.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
+      setTitle("Main Manu");
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      setBounds(100, 100, 827, 356);
+      MainManuPane = new JPanel(){
+      public void paintComponent(Graphics g){
+            g.drawImage(icon.getImage(), 0, 0, null);
+            setOpaque(false);
+            super.paintComponent(g);
+      }
+      };
+      MainManuPane.setBackground(Color.WHITE);
+      MainManuPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      setContentPane(MainManuPane);
+      MainManuPane.setLayout(null);
 
-	public void setExtraPoint(int point) {
-		currentP = point;
-		lblYourExtraPoint.setText("Your Extra Point : " + currentP);
-	}
-	
-	public MainMenu(String Username, PrintWriter pw, int point) {
-		this.out = pw;
-		this.currentP = point;
+      JLabel lblChoice = new JLabel("");
+      lblChoice.setBounds(39, 33, 174, 28);
+      lblChoice.setFont(new Font("Elephant", Font.BOLD, 22));
+      MainManuPane.add(lblChoice);
 
-		setForeground(Color.WHITE);
-		setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(GUI.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
-		setTitle("Main Manu");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 827, 317);
-		MainManuPane = new JPanel();
-		MainManuPane.setBackground(Color.WHITE);
-		MainManuPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(MainManuPane);
-		MainManuPane.setLayout(null);
+      lblYourExtraPoint = new JLabel("Your Extra Point : " + currentP);
+      lblYourExtraPoint.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
+      lblYourExtraPoint.setBounds(294, 12, 207, 18);
+      MainManuPane.add(lblYourExtraPoint);
 
-		JLabel lblChoice = new JLabel("Choice Quiz");
-		lblChoice.setBounds(39, 33, 174, 28);
-		lblChoice.setFont(new Font("Elephant", Font.BOLD, 22));
-		MainManuPane.add(lblChoice);
+      JButton btnchoMoive = new JButton("Moive");
+      btnchoMoive.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 0 " + currentP);
+         }
+      });
+      btnchoMoive.setBounds(49, 85, 127, 36);
+      MainManuPane.add(btnchoMoive);
 
-		lblYourExtraPoint = new JLabel("Your Extra Point : " + currentP);
-		lblYourExtraPoint.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
-		lblYourExtraPoint.setBounds(294, 12, 207, 18);
-		MainManuPane.add(lblYourExtraPoint);
+      JButton btnchoProgram = new JButton("Programming");
+      btnchoProgram.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 1 " + currentP);
+         }
+      });
+      btnchoProgram.setBounds(48, 140, 128, 36);
+      MainManuPane.add(btnchoProgram);
 
-		JButton btnchoMoive = new JButton("Moive");
-		btnchoMoive.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 0 " + currentP);
-			}
-		});
-		btnchoMoive.setBounds(49, 68, 127, 36);
-		MainManuPane.add(btnchoMoive);
+      JButton btnchoSocial = new JButton();
+      btnchoSocial.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 2 " + currentP);
+         }
+      });
+      btnchoSocial.setBounds(49, 195, 140, 36);
+      btnchoSocial.setContentAreaFilled(false);
+      btnchoSocial.setBorderPainted(false);
+      btnchoSocial.setIcon(new ImageIcon("C://Users//À¯¹Î//Documents//GitHub//Term-project//src//image//game.png"));
+      MainManuPane.add(btnchoSocial);
 
-		JButton btnchoProgram = new JButton("Programming");
-		btnchoProgram.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 1 " + currentP);
-			}
-		});
-		btnchoProgram.setBounds(48, 116, 128, 36);
-		MainManuPane.add(btnchoProgram);
+      JLabel lblSubjective = new JLabel("");
+      lblSubjective.setFont(new Font("MV Boli", Font.BOLD, 22));
+      lblSubjective.setBounds(227, 33, 174, 28);
+      MainManuPane.add(lblSubjective);
 
-		JButton btnchoSocial = new JButton("Social");
-		btnchoSocial.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 2 " + currentP);
-			}
-		});
-		btnchoSocial.setBounds(49, 164, 127, 36);
-		MainManuPane.add(btnchoSocial);
+      JButton btnSubMovie = new JButton("Movie");
+      btnSubMovie.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 3 " + currentP);
+         }
+      });
+      btnSubMovie.setBounds(253, 85, 127, 36);
+      MainManuPane.add(btnSubMovie);
 
-		JLabel lblSubjective = new JLabel("Subjective Quiz");
-		lblSubjective.setFont(new Font("MV Boli", Font.BOLD, 22));
-		lblSubjective.setBounds(227, 33, 174, 28);
-		MainManuPane.add(lblSubjective);
+      JButton btnSubProgramming = new JButton("Programming");
+      btnSubProgramming.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 4 " + currentP);
+         }
+      });
+      btnSubProgramming.setBounds(253, 140, 127, 36);
+      MainManuPane.add(btnSubProgramming);
 
-		JButton btnSubMovie = new JButton("Movie");
-		btnSubMovie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 3 " + currentP);
-			}
-		});
-		btnSubMovie.setBounds(253, 68, 127, 36);
-		MainManuPane.add(btnSubMovie);
+      JButton btnSubSocial = new JButton("Social");
+      btnSubSocial.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 5 " + currentP);
+         }
+      });
+      btnSubSocial.setBounds(253, 195, 127, 36);
+      MainManuPane.add(btnSubSocial);
 
-		JButton btnSubProgramming = new JButton("Programming");
-		btnSubProgramming.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 4 " + currentP);
-			}
-		});
-		btnSubProgramming.setBounds(253, 116, 127, 36);
-		MainManuPane.add(btnSubProgramming);
+      JLabel lblSpeed = new JLabel("");
+      lblSpeed.setFont(new Font("Harlow Solid Italic", Font.BOLD, 22));
+      lblSpeed.setBounds(444, 35, 116, 28);
+      MainManuPane.add(lblSpeed);
 
-		JButton btnSubSocial = new JButton("Social");
-		btnSubSocial.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 5 " + currentP);
-			}
-		});
-		btnSubSocial.setBounds(253, 164, 127, 36);
-		MainManuPane.add(btnSubSocial);
+      JButton btnSpMovie = new JButton("Moive");
+      btnSpMovie.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 6 " + currentP);
+         }
+      });
+      btnSpMovie.setBounds(444, 85, 127, 36);
+      MainManuPane.add(btnSpMovie);
 
-		JLabel lblSpeed = new JLabel("Speed Quiz");
-		lblSpeed.setFont(new Font("Harlow Solid Italic", Font.BOLD, 22));
-		lblSpeed.setBounds(444, 35, 116, 28);
-		MainManuPane.add(lblSpeed);
+      JButton btnSpProgramming = new JButton("Programming");
+      btnSpProgramming.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 7 " + currentP);
+         }
+      });
+      btnSpProgramming.setBounds(444, 140, 127, 36);
+      MainManuPane.add(btnSpProgramming);
 
-		JButton btnSpMovie = new JButton("Moive");
-		btnSpMovie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 6 " + currentP);
-			}
-		});
-		btnSpMovie.setBounds(444, 68, 127, 36);
-		MainManuPane.add(btnSpMovie);
+      JButton btnSpSocial = new JButton("Social");
+      btnSpSocial.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("ENTER 8 " + currentP);
+         }
+      });
+      btnSpSocial.setBounds(444, 195, 127, 36);
+      MainManuPane.add(btnSpSocial);
 
-		JButton btnSpProgramming = new JButton("Programming");
-		btnSpProgramming.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 7 " + currentP);
-			}
-		});
-		btnSpProgramming.setBounds(444, 116, 127, 36);
-		MainManuPane.add(btnSpProgramming);
+      JLabel lblchoEnter = new JLabel("");
+      lblchoEnter.setBounds(46, 214, 147, 18);
+      MainManuPane.add(lblchoEnter);
 
-		JButton btnSpSocial = new JButton("Social");
-		btnSpSocial.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("ENTER 8 " + currentP);
-			}
-		});
-		btnSpSocial.setBounds(444, 164, 127, 36);
-		MainManuPane.add(btnSpSocial);
+      JLabel lblchoRaise = new JLabel("");
+      lblchoRaise.setBounds(46, 239, 149, 18);
+      MainManuPane.add(lblchoRaise);
 
-		JLabel lblchoEnter = new JLabel("Enter fee : 100 points");
-		lblchoEnter.setBounds(46, 214, 147, 18);
-		MainManuPane.add(lblchoEnter);
+      JLabel lblSubEnter = new JLabel("");
+      lblSubEnter.setBounds(250, 212, 157, 18);
+      MainManuPane.add(lblSubEnter);
 
-		JLabel lblchoRaise = new JLabel("Raise fee : 50 points");
-		lblchoRaise.setBounds(46, 239, 149, 18);
-		MainManuPane.add(lblchoRaise);
+      JLabel lblSubRaise = new JLabel("");
+      lblSubRaise.setBounds(250, 239, 151, 18);
+      MainManuPane.add(lblSubRaise);
 
-		JLabel lblSubEnter = new JLabel("Enter fee : 200 points");
-		lblSubEnter.setBounds(250, 212, 157, 18);
-		MainManuPane.add(lblSubEnter);
+      JLabel lblSpEnter = new JLabel("");
+      lblSpEnter.setBounds(444, 212, 157, 18);
+      MainManuPane.add(lblSpEnter);
 
-		JLabel lblSubRaise = new JLabel("Raise fee : 120 points");
-		lblSubRaise.setBounds(250, 239, 151, 18);
-		MainManuPane.add(lblSubRaise);
+      JLabel lblSpRaise = new JLabel("");
+      lblSpRaise.setBounds(444, 239, 157, 18);
+      MainManuPane.add(lblSpRaise);
 
-		JLabel lblSpEnter = new JLabel("Enter fee : 300 points");
-		lblSpEnter.setBounds(444, 212, 157, 18);
-		MainManuPane.add(lblSpEnter);
+      JButton btnPractice = new JButton("Just Join!");
+      btnPractice.addActionListener(new ActionListener() {
+         public void actionPerformed(ActionEvent e) {
+            out.println("PRACTICE");
+         }
+      });
+      btnPractice.setBounds(627, 68, 150, 132);
+      btnPractice.setContentAreaFilled(false);
+      btnPractice.setBorderPainted(false);
+      //btnPractice.setIcon(new ImageIcon("C://Users//À¯¹Î//Documents//GitHub//Term-project//src//image//quiz.png"));
+      MainManuPane.add(btnPractice);
 
-		JLabel lblSpRaise = new JLabel("Raise fee : 200 points");
-		lblSpRaise.setBounds(444, 239, 157, 18);
-		MainManuPane.add(lblSpRaise);
+      JLabel lblPractice = new JLabel("");
+      lblPractice.setFont(new Font("Hobo BT", Font.BOLD, 22));
+      lblPractice.setBounds(627, 43, 150, 18);
+      MainManuPane.add(lblPractice);
 
-		JButton btnPractice = new JButton("Just Join!");
-		btnPractice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				out.println("PRACTICE");
-			}
-		});
-		btnPractice.setBounds(627, 68, 150, 132);
-		MainManuPane.add(btnPractice);
+      JLabel lblNoEnterFee = new JLabel("");
+      lblNoEnterFee.setBounds(652, 214, 110, 18);
+      MainManuPane.add(lblNoEnterFee);
 
-		JLabel lblPractice = new JLabel("Pactice Quiz");
-		lblPractice.setFont(new Font("Hobo BT", Font.BOLD, 22));
-		lblPractice.setBounds(627, 43, 150, 18);
-		MainManuPane.add(lblPractice);
+      JLabel lblGetPoints = new JLabel("");
+      lblGetPoints.setBounds(652, 239, 101, 18);
+      MainManuPane.add(lblGetPoints);
 
-		JLabel lblNoEnterFee = new JLabel("No any fee!");
-		lblNoEnterFee.setBounds(652, 214, 110, 18);
-		MainManuPane.add(lblNoEnterFee);
-
-		JLabel lblGetPoints = new JLabel("Get 2 points!");
-		lblGetPoints.setBounds(652, 239, 101, 18);
-		MainManuPane.add(lblGetPoints);
-
-		JLabel lblWelcome = new JLabel("Welcome! " + Username);
-		lblWelcome.setBounds(39, 12, 250, 18);
-		lblWelcome.setFont(new Font("Gill Sans MT", Font.BOLD, 15));
-		MainManuPane.add(lblWelcome);
-	}
+      JLabel lblWelcome = new JLabel(Username);
+      lblWelcome.setBounds(137, 11, 250, 18);
+      lblWelcome.setForeground(Color.WHITE);
+      lblWelcome.setFont(new Font("Bauhaus 93", Font.PLAIN, 20));
+      MainManuPane.add(lblWelcome);   
+      }
+   
 }
