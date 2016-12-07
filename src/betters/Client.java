@@ -21,16 +21,15 @@ public class Client {
 	private int currentP;
 	String userName;
 	private int betP = 0;
-	NotBetting notBetting = new NotBetting();
 
 	public Client() throws Exception {
-		socket = new Socket("172.30.1.11", 827);
+		socket = new Socket("127.0.0.1", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
 		currentP = 1000;
 	}
-	
+
 	public void calPoint(int point) {
 		currentP -= point;
 	}
@@ -54,7 +53,7 @@ public class Client {
 			} else if (msg.startsWith("ENTERED")) {
 				// charge entrance fee
 				currentP -= Integer.parseInt(in.readLine());
-				out.println(currentP);
+				out.println(userName + ":" + currentP);
 
 				// 메인메뉴 포커스 사라지게
 				mainmenu.setExtraPoint(currentP);
@@ -68,7 +67,6 @@ public class Client {
 			} else if (msg.startsWith("START")) {
 				out.println("MESSAGE <System>" + userName + " is now betting");
 				dataBox.setQuiz(msg.substring(6));
-//				notBetting.setVisible(false);
 				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
 				betting.setSubtopic(dataBox.problem.getSub_topic());
 				betting.setVisible(true);
@@ -76,29 +74,27 @@ public class Client {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
 				String name = token.nextToken();
 				int point = Integer.parseInt(token.nextToken());
-				
+
 				if (userName.equals(name)) {
 					betting.setVisible(false);
 					betP = point;
 					currentP -= point;
-				} 
+				}
 
 				dataBox.cumulativeP += point;
-				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(dataBox);
 			} else if (msg.startsWith("CALL")) {
 				int raise = Integer.parseInt(msg.substring(5));
 				call = new Call(quiz, out, this, raise - betP);
-				System.out.println("bet point " + betP);
-				System.out.println("raise point " + raise);
-				if(betP < raise) {
-					System.out.println("call");
+
+				if (betP < raise) {
 					call.setVisible(true);
 				}
 			} else if (msg.startsWith("DONE")) {
 				call.setVisible(false);
-				notBetting.setVisible(false);
 				quiz.showProblem(dataBox.problem.getProblem());
+			}else if(msg.startsWith("WIN")){
+				
 			}
 		}
 	}

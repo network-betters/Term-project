@@ -89,7 +89,7 @@ public class Server {
 							out.println(dataBoxes.get(room).getEntranceFee());
 
 							// enter the room
-							msg = dataBoxes.get(room).enter(out, Integer.parseInt(in.readLine()));
+							msg = dataBoxes.get(room).enter(out, in.readLine());
 
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println(msg);
@@ -103,6 +103,10 @@ public class Server {
 						if (msg.contains("<System>")) {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("MESSAGE " + msg.substring(7));
+							}
+						} else if (msg.contains(dataBoxes.get(room).problem.getAnswer())) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("WIN " + name);
 							}
 						} else {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
@@ -118,11 +122,6 @@ public class Server {
 					} else if (msg.startsWith("BETTING")) {
 						if (index < dataBoxes.get(room).out.size()) {
 							dataBoxes.get(room).out.get(index).println("START " + dataBoxes.get(room).getQuiz());
-
-						} else {
-							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("CALL " + dataBoxes.get(room).maxRR);
-							}
 						}
 
 						msg = dataBoxes.get(room).raise(index++, msg.substring(8));
@@ -130,8 +129,14 @@ public class Server {
 						for (PrintWriter temp : dataBoxes.get(room).out) {
 							temp.println(msg);
 						}
+
+						if (index > dataBoxes.get(room).out.size()) {
+							for (int i = 0; i < dataBoxes.get(room).out.size() - 1; i++) {
+								dataBoxes.get(room).out.get(i).println("CALL " + dataBoxes.get(room).maxRR);
+							}
+						}
 					} else if (msg.startsWith("CALL")) {
-						if(dataBoxes.get(room).call()) {
+						if (dataBoxes.get(room).call()) {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("DONE");
 							}

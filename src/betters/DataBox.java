@@ -6,11 +6,13 @@ import java.util.StringTokenizer;
 
 public class DataBox {
 	StringTokenizer token;
+	private ArrayList<String>names = new ArrayList<String>();
 	public ArrayList<PrintWriter> out = new ArrayList<PrintWriter>();
 	private boolean start = false;
 	public Problem problem = new Problem();
 	private int userNum = 0;
 	private int readyNum = 0;
+	private int betNum = 0;
 	private int entranceFee = 0;
 	public int cumulativeP = 0; // current point in this room
 	public int minRR = 0; // minimum raise rate
@@ -30,10 +32,15 @@ public class DataBox {
 		return start;
 	}
 
-	public String enter(PrintWriter pt, int point) {
+	public String enter(PrintWriter pt, String str) {
+		token = new StringTokenizer(str, ":");
+		String name = token.nextToken();
+		int point = Integer.parseInt(token.nextToken());
+		
 		if (!out.contains(pt)) {
 			userNum++;
 
+			names.add(name);
 			out.add(pt);
 
 			// update cumulative point
@@ -104,9 +111,10 @@ public class DataBox {
 	}
 	
 	public boolean call() {
-		if(--readyNum > 0) 
-			return false;
-		else 
+		betNum++;
+		if(betNum == userNum)
 			return true;
+		else 
+			return false;
 	}
 }

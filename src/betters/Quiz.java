@@ -23,6 +23,7 @@ public class Quiz extends JFrame {
 	public boolean client_ready = false;
 	JTextArea ProblemArea;
 	JTextArea ChattingArea;
+	JTextArea UserList;
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
 	JLabel lblminR;
@@ -32,7 +33,7 @@ public class Quiz extends JFrame {
 	private PrintWriter out;
 	private ImageIcon icon;
 	JButton btnReady;
-	private boolean die = false;
+	
 
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
@@ -145,7 +146,7 @@ public class Quiz extends JFrame {
 		QuizPane.add(btnReady);
 		QuizPane.add(btnExit);
 
-		JTextArea UserList = new JTextArea();
+		UserList = new JTextArea();
 		UserList.setEditable(false);
 		UserList.setForeground(new Color(255, 255, 240));
 		UserList.setBackground(new Color(23, 85, 110));
