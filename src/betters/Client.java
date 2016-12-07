@@ -23,7 +23,7 @@ public class Client {
 	NotBetting notBetting = new NotBetting();
 
 	public Client() throws Exception {
-		socket = new Socket("127.0.0.1", 827);
+		socket = new Socket("172.30.1.11", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
@@ -62,7 +62,6 @@ public class Client {
 				quiz.chat(msg.substring(7));
 			} else if (msg.startsWith("START")) {
 				dataBox.setQuiz(msg.substring(6));
-				
 				notBetting.setVisible(false);
 				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
 				betting.setSubtopic(dataBox.problem.getSub_topic());
@@ -75,10 +74,10 @@ public class Client {
 				if (userName.equals(name)) {
 					betting.setVisible(false);
 					currentP -= point;
-				} else {
-					notBetting.setVisible(true);
-					System.out.println("not my turn");
-				}
+				} 
+//				else {
+//					notBetting.setVisible(true);
+//				}
 
 				dataBox.cumulativeP += point;
 				mainmenu.setExtraPoint(currentP);
@@ -88,9 +87,10 @@ public class Client {
 			} else if (msg.startsWith("DONE")) {
 				notBetting.setVisible(false);
 				quiz.showProblem(dataBox.problem.getProblem());
-			}else if (msg.startsWith("WAIT")) {
-				notBetting.setVisible(true);
 			}
+//			else if (msg.startsWith("WAIT")) {
+//				notBetting.setVisible(true);
+//			}
 		}
 	}
 

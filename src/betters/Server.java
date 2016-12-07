@@ -107,24 +107,24 @@ public class Server {
 						if (dataBoxes.get(room).getReady()) {
 							dataBoxes.get(room).out.get(index).println("START "  + dataBoxes.get(room).getQuiz());
 							
-							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
-								if(i == index) 
-									continue;
-								
-								dataBoxes.get(room).out.get(i).println("WAIT");
-							}
+//							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
+//								if(i == index) 
+//									continue;
+//								
+//								dataBoxes.get(room).out.get(i).println("WAIT");
+//							}
 							index++;
 						}
 					} else if (msg.startsWith("BETTING")) {
 						if (index < dataBoxes.get(room).out.size()) {
 							dataBoxes.get(room).out.get(index).println("START " + dataBoxes.get(room).getQuiz());
 							
-							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
-								if(i == index) 
-									continue;
-								
-								dataBoxes.get(room).out.get(i).println("WAIT");
-							}
+//							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
+//								if(i == index) 
+//									continue;
+//								
+//								dataBoxes.get(room).out.get(i).println("WAIT");
+//							}
 						} else{
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("DONE");

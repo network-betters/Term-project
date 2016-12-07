@@ -75,6 +75,7 @@ public class Betting extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				out.println("BETTING " + userName + ":" + Raise.getText());
+				out.println("MESSAGE " + userName + "is now betting");
 			}
 		});
 
