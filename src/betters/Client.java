@@ -89,8 +89,10 @@ public class Client {
 			} else if (msg.startsWith("CALL")) {
 				int raise = Integer.parseInt(msg.substring(5));
 				call = new Call(quiz, out, this, raise - betP);
-				
+				System.out.println("bet point " + betP);
+				System.out.println("raise point " + raise);
 				if(betP < raise) {
+					System.out.println("call");
 					call.setVisible(true);
 				}
 			} else if (msg.startsWith("DONE")) {
