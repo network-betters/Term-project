@@ -2,6 +2,7 @@ package betters;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,9 +16,17 @@ public class NotBetting extends JFrame {
 	private ImageIcon back;
 
 	public NotBetting() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 375, 201);
-		contentPane = new JPanel();
+		back = new ImageIcon("./src/image/wait.png");
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 390, 245);
+		contentPane = new JPanel(){
+		      public void paintComponent(Graphics g){
+		            g.drawImage(back.getImage(), 0, 0, null);
+		            setOpaque(false);
+		            super.paintComponent(g);
+		      }
+		};
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
