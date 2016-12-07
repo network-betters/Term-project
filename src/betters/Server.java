@@ -106,14 +106,14 @@ public class Server {
 					} else if (msg.startsWith("READY")) {
 						System.out.println(index);
 						if (dataBoxes.get(room).getReady()) {
-							dataBoxes.get(room).out.get(index++).println("START");
+							dataBoxes.get(room).out.get(index++).println("START "  + dataBoxes.get(room).getQuiz());
 						}
 					} else if (msg.startsWith("BETTING")) {
 						if (index < writers.size()) {
-							dataBoxes.get(room).out.get(index).println("START");
+							dataBoxes.get(room).out.get(index).println("START " + dataBoxes.get(room).getQuiz());
 						} else{
 							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("DONE " + dataBoxes.get(room).getQuiz());
+								temp.println("DONE");
 							}
 						}
 

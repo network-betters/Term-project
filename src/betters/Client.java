@@ -60,7 +60,10 @@ public class Client {
 			} else if (msg.startsWith("MESSAGE")) {
 				quiz.chat(msg.substring(7));
 			} else if (msg.startsWith("START")) {
+				dataBox.setQuiz(msg.substring(6));
+				
 				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
+				betting.setSubtopic(dataBox.problem.getSub_topic());
 				betting.setVisible(true);
 			} else if (msg.startsWith("RAISE")) {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
@@ -78,7 +81,6 @@ public class Client {
 			} else if (msg.startsWith("CALL")) {
 				
 			} else if (msg.startsWith("DONE")) {
-				dataBox.setQuiz(msg.substring(5));
 				quiz.showProblem(dataBox.problem.getProblem());
 			}
 		}

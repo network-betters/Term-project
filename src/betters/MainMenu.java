@@ -37,8 +37,6 @@ public class MainMenu extends JFrame {
       this.out = pw;
       this.currentP = point;
       setForeground(Color.WHITE);
-      setIconImage(Toolkit.getDefaultToolkit()
-            .getImage(GUI.class.getResource("/com/sun/javafx/scene/web/skin/Bold_16x16_JFX.png")));
       setTitle("Main Manu");
       setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       setBounds(100, 100, 827, 356);
