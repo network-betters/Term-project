@@ -41,7 +41,7 @@ public class Betting extends JFrame {
 
 		setTitle("Betting");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 427, 190);
+		setBounds(100, 100, 427, 213);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,27 +49,27 @@ public class Betting extends JFrame {
 		contentPane.setLayout(null);
 
 		Raise = new JTextField();
-		Raise.setBounds(103, 59, 185, 24);
+		Raise.setBounds(109, 91, 185, 24);
 		contentPane.add(Raise);
 		Raise.setColumns(10);
 
 		JLabel minR = new JLabel(minRR + " <");
 		minR.setFont(new Font("Kristen ITC", Font.BOLD, 15));
-		minR.setBounds(36, 59, 62, 24);
+		minR.setBounds(39, 90, 62, 24);
 		contentPane.add(minR);
 
 		JLabel maxR = new JLabel("< " + maxP);
 		maxR.setFont(new Font("Kristen ITC", Font.BOLD, 15));
-		maxR.setBounds(295, 59, 62, 24);
+		maxR.setBounds(308, 90, 62, 24);
 		contentPane.add(maxR);
 
 		JLabel lblDoOrDie = new JLabel("Do or Die");
 		lblDoOrDie.setFont(new Font("Kristen ITC", Font.BOLD, 17));
-		lblDoOrDie.setBounds(145, 29, 106, 18);
+		lblDoOrDie.setBounds(156, 29, 106, 18);
 		contentPane.add(lblDoOrDie);
 
 		JButton btnDo = new JButton("Do");
-		btnDo.setBounds(90, 95, 105, 27);
+		btnDo.setBounds(90, 127, 105, 27);
 		contentPane.add(btnDo);
 		btnDo.addActionListener(new ActionListener() {
 			@Override
@@ -79,7 +79,7 @@ public class Betting extends JFrame {
 		});
 
 		JButton btnDie = new JButton("Die");
-		btnDie.setBounds(209, 95, 105, 27);
+		btnDie.setBounds(210, 127, 105, 27);
 		contentPane.add(btnDie);
 
 		lblSubTopic = new JLabel("Sub Topic : ");
