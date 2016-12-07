@@ -100,41 +100,41 @@ public class Server {
 							temp.leave(out);
 						}
 					} else if (msg.startsWith("MESSAGE")) {
-						for (PrintWriter temp : dataBoxes.get(room).out) {
-							temp.println("MESSAGE " + name + ": " + msg.substring(7));
+						if (msg.contains("<System>")) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("MESSAGE " + msg.substring(7));
+							}
+						} else {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("MESSAGE " + name + ": " + msg.substring(7));
+							}
 						}
 					} else if (msg.startsWith("READY")) {
 						if (dataBoxes.get(room).getReady()) {
-							dataBoxes.get(room).out.get(index).println("START "  + dataBoxes.get(room).getQuiz());
-							
-//							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
-//								if(i == index) 
-//									continue;
-//								
-//								dataBoxes.get(room).out.get(i).println("WAIT");
-//							}
+							dataBoxes.get(room).out.get(index).println("START " + dataBoxes.get(room).getQuiz());
+
 							index++;
 						}
 					} else if (msg.startsWith("BETTING")) {
 						if (index < dataBoxes.get(room).out.size()) {
 							dataBoxes.get(room).out.get(index).println("START " + dataBoxes.get(room).getQuiz());
-							
-//							for(int i = 0; i < dataBoxes.get(room).out.size(); i++) {
-//								if(i == index) 
-//									continue;
-//								
-//								dataBoxes.get(room).out.get(i).println("WAIT");
-//							}
-						} else{
+
+						} else {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
-								temp.println("DONE");
+								temp.println("CALL " + dataBoxes.get(room).maxRR);
 							}
 						}
 
 						msg = dataBoxes.get(room).raise(index++, msg.substring(8));
-						
+
 						for (PrintWriter temp : dataBoxes.get(room).out) {
 							temp.println(msg);
+						}
+					} else if (msg.startsWith("CALL")) {
+						if(dataBoxes.get(room).call()) {
+							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("DONE");
+							}
 						}
 					}
 				}

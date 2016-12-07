@@ -28,26 +28,27 @@ public class Quiz extends JFrame {
 	JLabel lblminR;
 	JScrollPane scroll;
 	private JPanel QuizPane;
-	private JTextField ChattingUser;
+	public JTextField ChattingUser;
 	private PrintWriter out;
 	private ImageIcon icon;
 	JButton btnReady;
-	
+	private boolean die = false;
+
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
 	}
-	
+
 	public void showProblem(String problem, ArrayList<String> example) {
 		ProblemArea.append(problem + "\n");
 		ProblemArea.append(example.get(0) + "\t" + example.get(1) + example.get(2));
 	}
 
 	public void setLbl(DataBox db) {
-		lblMaximumRaise.setText("" + db.maxP);;
-		lblCumulative.setText("" + db.cumulativeP);;
-		lblminR.setText("" + db.minRR);;
+		lblMaximumRaise.setText("" + db.maxP);
+		lblCumulative.setText("" + db.cumulativeP);
+		lblminR.setText("" + db.minRR);
 	}
-	
+
 	public void chat(String msg) {
 		ChattingArea.append(msg + "\n");
 		ChattingArea.setCaretPosition(ChattingArea.getDocument().getLength());
@@ -62,12 +63,12 @@ public class Quiz extends JFrame {
 		setTitle("Quiz");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 629, 493);
-		QuizPane = new JPanel(){
-		      public void paintComponent(Graphics g){
-		            g.drawImage(icon.getImage(), 0, 0, null);
-		            setOpaque(false);
-		            super.paintComponent(g);
-		      }
+		QuizPane = new JPanel() {
+			public void paintComponent(Graphics g) {
+				g.drawImage(icon.getImage(), 0, 0, null);
+				setOpaque(false);
+				super.paintComponent(g);
+			}
 		};
 		QuizPane.setBackground(new Color(12, 42, 53));
 		QuizPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,8 +94,7 @@ public class Quiz extends JFrame {
 						client_ready = true;
 						out.println("READY");
 						btnReady.setIcon(new ImageIcon("./src/image/readyp.png"));
-					} else
-					{
+					} else {
 						btnReady.setIcon(new ImageIcon("./src/image/ready.png"));
 						client_ready = false;
 					}
@@ -138,7 +138,7 @@ public class Quiz extends JFrame {
 		scroll.setBounds(14, 240, 449, 156);
 		scroll.setViewportView(ChattingArea);
 		QuizPane.add(scroll);
-		
+
 		QuizPane.setLayout(null);
 		QuizPane.add(ChattingUser);
 		QuizPane.add(ProblemArea);

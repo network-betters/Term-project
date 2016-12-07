@@ -95,15 +95,18 @@ public class DataBox {
 		}
 		
 		if(point > maxRR) {
-			for(int i = 0; i < index; i++) {
-				out.get(i).println("CALL " + point);
-			}
-			
 			maxRR = point;
 		}
 		
 		cumulativeP += point;
 		
 		return "RAISE " + str;
+	}
+	
+	public boolean call() {
+		if(--readyNum > 0) 
+			return false;
+		else 
+			return true;
 	}
 }

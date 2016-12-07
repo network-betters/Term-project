@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 
 public class Client {
+	Call call;
 	Login_User login;
 	MainMenu mainmenu;
 	Quiz quiz;
@@ -19,7 +20,7 @@ public class Client {
 	DataBox dataBox;
 	private int currentP;
 	String userName;
-	private int raise = 0;
+	private int betP = 0;
 	NotBetting notBetting = new NotBetting();
 
 	public Client() throws Exception {
@@ -28,6 +29,10 @@ public class Client {
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
 		currentP = 1000;
+	}
+	
+	public void calPoint(int point) {
+		currentP -= point;
 	}
 
 	public void run() throws Exception {
@@ -61,8 +66,9 @@ public class Client {
 			} else if (msg.startsWith("MESSAGE")) {
 				quiz.chat(msg.substring(7));
 			} else if (msg.startsWith("START")) {
+				out.println("MESSAGE <System>" + userName + " is now betting");
 				dataBox.setQuiz(msg.substring(6));
-				notBetting.setVisible(false);
+//				notBetting.setVisible(false);
 				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
 				betting.setSubtopic(dataBox.problem.getSub_topic());
 				betting.setVisible(true);
@@ -73,24 +79,25 @@ public class Client {
 				
 				if (userName.equals(name)) {
 					betting.setVisible(false);
+					betP = point;
 					currentP -= point;
 				} 
-//				else {
-//					notBetting.setVisible(true);
-//				}
 
 				dataBox.cumulativeP += point;
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(dataBox);
 			} else if (msg.startsWith("CALL")) {
+				int raise = Integer.parseInt(msg.substring(5));
+				call = new Call(quiz, out, this, raise - betP);
 				
+				if(betP < raise) {
+					call.setVisible(true);
+				}
 			} else if (msg.startsWith("DONE")) {
+				call.setVisible(false);
 				notBetting.setVisible(false);
 				quiz.showProblem(dataBox.problem.getProblem());
 			}
-//			else if (msg.startsWith("WAIT")) {
-//				notBetting.setVisible(true);
-//			}
 		}
 	}
 
