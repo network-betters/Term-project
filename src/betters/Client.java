@@ -61,7 +61,7 @@ public class Client {
 				quiz.setVisible(true);
 			} else if (msg.startsWith("UPDATE")) {
 				dataBox.decrypt(msg.substring(7));
-				quiz.setLbl(dataBox);
+				quiz.setLbl(currentP, dataBox);
 			} else if (msg.startsWith("MESSAGE")) {
 				quiz.chat(msg.substring(7));
 			} else if (msg.startsWith("START")) {
@@ -82,7 +82,7 @@ public class Client {
 				}
 
 				dataBox.cumulativeP += point;
-				quiz.setLbl(dataBox);
+				quiz.setLbl(currentP, dataBox);
 			} else if (msg.startsWith("CALL")) {
 				int raise = Integer.parseInt(msg.substring(5));
 				call = new Call(quiz, out, this, raise - betP);

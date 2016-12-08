@@ -106,6 +106,8 @@ public class Server {
 							}
 						} else if (msg.contains(dataBoxes.get(room).problem.getAnswer())) {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
+								temp.println("MESSAGE " + name + ": " + msg.substring(7));
+								temp.println("MESSAGE <System>" + name + " win!!!");
 								temp.println("WIN " + name + ":" + dataBoxes.get(room).cumulativeP);
 							}
 						} else {

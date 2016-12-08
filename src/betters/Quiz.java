@@ -27,13 +27,13 @@ public class Quiz extends JFrame {
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
 	JLabel lblminR;
+	JLabel lblPoint;
 	JScrollPane scroll;
 	private JPanel QuizPane;
 	public JTextField ChattingUser;
 	private PrintWriter out;
 	private ImageIcon icon;
 	JButton btnReady;
-	
 
 	public void showProblem(String problem) {
 		ProblemArea.setText(problem);
@@ -44,7 +44,8 @@ public class Quiz extends JFrame {
 		ProblemArea.append(example.get(0) + "\t" + example.get(1) + example.get(2));
 	}
 
-	public void setLbl(DataBox db) {
+	public void setLbl(int point, DataBox db) {
+		lblPoint.setText("" + point);
 		lblMaximumRaise.setText("" + db.maxP);
 		lblCumulative.setText("" + db.cumulativeP);
 		lblminR.setText("" + db.minRR);
@@ -170,5 +171,10 @@ public class Quiz extends JFrame {
 		lblminR.setForeground(Color.WHITE);
 		lblminR.setBounds(188, 56, 115, 18);
 		QuizPane.add(lblminR);
+
+		lblPoint = new JLabel("");
+		lblPoint.setFont(new Font("Bauhaus 93", Font.PLAIN, 18));
+		lblPoint.setForeground(Color.WHITE);
+		lblCumulative.setBounds(468, 56, 275, 18);
 	}
 }
