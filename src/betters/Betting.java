@@ -22,6 +22,8 @@ public class Betting extends JFrame {
 	private PrintWriter out;
 	private JPanel contentPane;
 	private JTextField Raise;
+	JLabel minR;
+	JLabel maxR;
 	JLabel lblSubTopic;
 	Quiz quiz;
 	ImageIcon icon;
@@ -29,12 +31,11 @@ public class Betting extends JFrame {
 	public void setting(int min, int max) {
 		maxP = max;
 		minRR = min;
+		
+		minR.setText(minRR + " < ");
+		maxR.setText(" < " + maxP);
 	}
 	
-	public void setting(int max) {
-		maxP = max;
-	}
-
 	public void setSubtopic(String sub) {
 		lblSubTopic.setText("Sub Topic : " + sub);
 	}
@@ -69,13 +70,13 @@ public class Betting extends JFrame {
 		contentPane.add(Raise);
 		Raise.setColumns(10);
 
-		JLabel minR = new JLabel(minRR + " <");
+		minR = new JLabel(minRR + " < ");
 		minR.setFont(new Font("Bauhaus 93", Font.PLAIN, 17));
 		minR.setForeground(Color.WHITE);
 		minR.setBounds(65, 125, 62, 24);
 		contentPane.add(minR);
 
-		JLabel maxR = new JLabel("< " + maxP);
+		maxR = new JLabel(" < " + maxP);
 		maxR.setFont(new Font("Bauhaus 93", Font.PLAIN, 17));
 		maxR.setForeground(Color.WHITE);
 		maxR.setBounds(320, 125, 62, 24);

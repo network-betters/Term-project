@@ -71,7 +71,7 @@ public class Client {
 				out.println("MESSAGE <System>" + userName + " is now betting");
 				dataBox.setQuiz(msg.substring(6));
 				betting.setSubtopic(dataBox.problem.getSub_topic());
-				betting.setting(dataBox.maxP);
+				betting.setting(dataBox.minRR, dataBox.maxP);
 				betting.setVisible(true);
 			} else if (msg.startsWith("RAISE")) {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
