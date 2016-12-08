@@ -60,6 +60,8 @@ public class Client {
 				mainmenu.setExtraPoint(currentP);
 				quiz = new Quiz(out);
 				quiz.setVisible(true);
+				
+				betting = new Betting(quiz, userName, out, dataBox.maxP, dataBox.minRR);
 			} else if (msg.startsWith("UPDATE")) {
 				dataBox.decrypt(msg.substring(7));
 				quiz.setLbl(currentP, dataBox);
@@ -68,8 +70,8 @@ public class Client {
 			} else if (msg.startsWith("START")) {
 				out.println("MESSAGE <System>" + userName + " is now betting");
 				dataBox.setQuiz(msg.substring(6));
-				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
 				betting.setSubtopic(dataBox.problem.getSub_topic());
+				betting.setting(dataBox.maxP);
 				betting.setVisible(true);
 			} else if (msg.startsWith("RAISE")) {
 				StringTokenizer token = new StringTokenizer(msg.substring(6), ":");
@@ -83,6 +85,7 @@ public class Client {
 				}
 
 				dataBox.cumulativeP += point;
+				betting.setting(point, dataBox.maxP);
 				quiz.setLbl(currentP, dataBox);
 			} else if (msg.startsWith("CALL")) {
 				int raise = Integer.parseInt(msg.substring(5));
@@ -97,12 +100,10 @@ public class Client {
 				StringTokenizer token = new StringTokenizer(msg.substring(4), ":");
 				String name = token.nextToken();
 				int cumulative = Integer.parseInt(token.nextToken());
-				
 				quiz.ChattingUser.setEditable(true);
 				if (name.equals(userName)) {
 					currentP += cumulative;
 				}
-				
 				mainmenu.setExtraPoint(currentP);
 				quiz.dispose();
 			} else if(msg.startsWith("LIST")) {
