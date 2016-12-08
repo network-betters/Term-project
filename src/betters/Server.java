@@ -90,14 +90,17 @@ public class Server {
 
 							// enter the room
 							msg = dataBoxes.get(room).enter(out, in.readLine());
-
+							
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println(msg);
+								temp.println(dataBoxes.get(room).getUserList());
 							}
 						}
 					} else if (msg.startsWith("EXIT")) {
-						for (DataBox temp : dataBoxes) {
-							temp.leave(out);
+						dataBoxes.get(room).leave(name, out);
+					
+						for (PrintWriter temp : dataBoxes.get(room).out) {
+							temp.println(dataBoxes.get(room).getUserList());
 						}
 					} else if (msg.startsWith("MESSAGE")) {
 						if (msg.contains("<System>")) {

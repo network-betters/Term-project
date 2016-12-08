@@ -23,7 +23,7 @@ public class Client {
 	private int betP = 0;
 
 	public Client() throws Exception {
-		socket = new Socket("127.0.0.1", 827);
+		socket = new Socket("192.168.1.78", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
@@ -105,6 +105,8 @@ public class Client {
 				
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(currentP, dataBox);
+			} else if(msg.startsWith("LIST")) {
+				quiz.userList(msg.substring(5));
 			}
 		}
 	}

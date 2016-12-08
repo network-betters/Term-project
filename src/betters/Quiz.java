@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,6 +55,15 @@ public class Quiz extends JFrame {
 	public void chat(String msg) {
 		ChattingArea.append(msg + "\n");
 		ChattingArea.setCaretPosition(ChattingArea.getDocument().getLength());
+	}
+
+	public void userList(String names) {
+		StringTokenizer token = new StringTokenizer(names, ":");
+		UserList.setText("");
+		
+		while(token.hasMoreTokens()) {
+			UserList.append(token.nextToken() + "\n");
+		}
 	}
 
 	public Quiz(PrintWriter pw) {

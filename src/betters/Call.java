@@ -41,7 +41,7 @@ public class Call extends JFrame {
 		contentPane.add(lblDo);
 
 		JLabel differ = new JLabel("you have to raise: " + point);
-		differ.setBounds(133, 42, 200, 18);
+		differ.setBounds(100, 42, 200, 18);
 		contentPane.add(differ);
 
 		JButton btnDo = new JButton("Do");

@@ -62,16 +62,28 @@ public class DataBox {
 		}
 		return "UPDATE " + cumulativeP + ":" + minRR + ":" + maxP;
 	}
-	
+
 	public String encrypt() {
 		return "UPDATE " + cumulativeP + ":" + minRR + ":" + maxP;
 	}
 
-	public void leave(PrintWriter pt) {
-		if (out.contains(pt))
-			out.remove(pt);
+	public String getUserList() {
+		String result = "LIST ";
 
-		userNum--;
+		for (String temp : names) {
+			result += ":" + temp;
+		}
+		System.out.println(result);
+		return result;
+	}
+
+	public void leave(String name, PrintWriter pt) {
+		if (out.contains(pt)) {
+			out.remove(pt);
+			names.remove(name);
+			
+			userNum--;
+		}
 	}
 
 	public int getEntranceFee() {
