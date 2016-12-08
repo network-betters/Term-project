@@ -102,7 +102,9 @@ public class Client {
 					currentP += cumulative;
 				}
 				mainmenu.setExtraPoint(currentP);
-				quiz.setLbl(currentP, dataBox);
+				quiz.dispose();
+			} else if(msg.startsWith("LIST")) {
+				quiz.userList(msg.substring(5));
 			}
 		}
 	}
