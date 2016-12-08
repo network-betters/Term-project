@@ -113,6 +113,8 @@ public class Server {
 								temp.println("MESSAGE <System>" + name + " win!!!");
 								temp.println("WIN " + name + ":" + dataBoxes.get(room).cumulativeP);
 							}
+							
+							dataBoxes.get(room).initialize();
 						} else {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("MESSAGE " + name + ": " + msg.substring(7));
