@@ -21,8 +21,8 @@ public class Call extends JFrame {
 	private PrintWriter out;
 	private int point;
 	
-	public Call(Quiz q, PrintWriter pw, Client c, int p) {
-		client = c;
+	public Call(Quiz q, PrintWriter pw, Client cl, int p) {
+		client = cl;
 		out = pw;
 		quiz = q;
 		point = p;
@@ -41,7 +41,7 @@ public class Call extends JFrame {
 		contentPane.add(lblDo);
 
 		JLabel differ = new JLabel("you have to raise: " + point);
-		differ.setBounds(133, 42, 100, 18);
+		differ.setBounds(133, 42, 200, 18);
 		contentPane.add(differ);
 
 		JButton btnDo = new JButton("Do");
@@ -52,6 +52,7 @@ public class Call extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				client.calPoint(point);
 				out.println("CALL");
+				dispose();
 			}
 		});
 
@@ -63,6 +64,7 @@ public class Call extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				quiz.ChattingUser.setEditable(false);
 				out.println("CALL");
+				dispose();
 			}
 		});
 	}

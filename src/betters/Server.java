@@ -138,6 +138,10 @@ public class Server {
 							}
 						}
 					} else if (msg.startsWith("CALL")) {
+						for (PrintWriter temp : dataBoxes.get(room).out) {
+							temp.println(dataBoxes.get(room).encrypt());
+						}
+						
 						if (dataBoxes.get(room).call()) {
 							for (PrintWriter temp : dataBoxes.get(room).out) {
 								temp.println("DONE");

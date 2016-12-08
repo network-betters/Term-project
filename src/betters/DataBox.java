@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class DataBox {
 	StringTokenizer token;
-	private ArrayList<String>names = new ArrayList<String>();
+	private ArrayList<String> names = new ArrayList<String>();
 	public ArrayList<PrintWriter> out = new ArrayList<PrintWriter>();
 	private boolean start = false;
 	public Problem problem = new Problem();
@@ -19,7 +19,7 @@ public class DataBox {
 	public int maxP = 0; // maximum point for betting
 	public int maxRR = 0;
 	String msg;
-	
+
 	public void initialize() {
 		start = false;
 		readyNum = 0;
@@ -43,7 +43,7 @@ public class DataBox {
 		token = new StringTokenizer(str, ":");
 		String name = token.nextToken();
 		int point = Integer.parseInt(token.nextToken());
-		
+
 		if (!out.contains(pt)) {
 			userNum++;
 
@@ -60,6 +60,10 @@ public class DataBox {
 				maxP = point;
 			}
 		}
+		return "UPDATE " + cumulativeP + ":" + minRR + ":" + maxP;
+	}
+	
+	public String encrypt() {
 		return "UPDATE " + cumulativeP + ":" + minRR + ":" + maxP;
 	}
 
@@ -96,32 +100,34 @@ public class DataBox {
 		problem.setProblem(token.nextToken());
 		problem.setSub_topic(token.nextToken());
 	}
-	
+
 	public String raise(int index, String str) {
 		int point;
-		
+
 		token = new StringTokenizer(str, ":");
 		token.nextToken();
 		point = Integer.parseInt(token.nextToken());
-		
-		if(index == 0) {
+
+		if (index == 0) {
 			maxRR = point;
 		}
-		
-		if(point > maxRR) {
+
+		if (point > maxRR) {
 			maxRR = point;
 		}
-		
+
 		cumulativeP += point;
-		
+
 		return "RAISE " + str;
 	}
-	
+
 	public boolean call() {
 		betNum++;
-		if(betNum == userNum)
+		cumulativeP += maxRR;
+
+		if (betNum == userNum - 1)
 			return true;
-		else 
+		else
 			return false;
 	}
 }

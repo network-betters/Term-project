@@ -32,6 +32,7 @@ public class Client {
 
 	public void calPoint(int point) {
 		currentP -= point;
+		quiz.setLbl(currentP, dataBox);
 	}
 
 	public void run() throws Exception {
@@ -91,12 +92,12 @@ public class Client {
 					call.setVisible(true);
 				}
 			} else if (msg.startsWith("DONE")) {
-				call.setVisible(false);
 				quiz.showProblem(dataBox.problem.getProblem());
 			}else if(msg.startsWith("WIN")){
 				StringTokenizer token = new StringTokenizer(msg.substring(4), ":");
 				String name = token.nextToken();
 				int cumulative = Integer.parseInt(token.nextToken());
+				mainmenu.setExtraPoint(currentP);
 				
 				quiz.ChattingUser.setEditable(true);
 				if (name.equals(userName)) {
