@@ -97,10 +97,18 @@ public class Client {
 				StringTokenizer token = new StringTokenizer(msg.substring(4), ":");
 				String name = token.nextToken();
 				int cumulative = Integer.parseInt(token.nextToken());
+<<<<<<< HEAD
+=======
+				
+>>>>>>> origin/master
 				quiz.ChattingUser.setEditable(true);
 				if (name.equals(userName)) {
 					currentP += cumulative;
 				}
+<<<<<<< HEAD
+=======
+				
+>>>>>>> origin/master
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(currentP, dataBox);
 			}
