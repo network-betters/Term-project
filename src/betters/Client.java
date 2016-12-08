@@ -68,7 +68,7 @@ public class Client {
 			} else if (msg.startsWith("START")) {
 				out.println("MESSAGE <System>" + userName + " is now betting");
 				dataBox.setQuiz(msg.substring(6));
-				betting = new Betting(userName, out, dataBox.maxP, dataBox.minRR);
+				betting = new Betting(quiz, userName, out, dataBox.maxP, dataBox.minRR);
 				betting.setSubtopic(dataBox.problem.getSub_topic());
 				betting.setVisible(true);
 			} else if (msg.startsWith("RAISE")) {
