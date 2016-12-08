@@ -19,6 +19,13 @@ public class DataBox {
 	public int maxP = 0; // maximum point for betting
 	public int maxRR = 0;
 	String msg;
+	
+	public void initialize() {
+		start = false;
+		readyNum = 0;
+		cumulativeP = 0;
+		betNum = 0;
+	}
 
 	public DataBox setRoom(Problem problem, int entranceFee, int minRR) {
 		this.problem = problem;
