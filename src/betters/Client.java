@@ -23,7 +23,7 @@ public class Client {
 	private int betP = 0;
 
 	public Client() throws Exception {
-		socket = new Socket("192.168.0.3", 827);
+		socket = new Socket("192.168.1.78", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
@@ -97,18 +97,10 @@ public class Client {
 				StringTokenizer token = new StringTokenizer(msg.substring(4), ":");
 				String name = token.nextToken();
 				int cumulative = Integer.parseInt(token.nextToken());
-<<<<<<< HEAD
-=======
-				
->>>>>>> origin/master
 				quiz.ChattingUser.setEditable(true);
 				if (name.equals(userName)) {
 					currentP += cumulative;
 				}
-<<<<<<< HEAD
-=======
-				
->>>>>>> origin/master
 				mainmenu.setExtraPoint(currentP);
 				quiz.setLbl(currentP, dataBox);
 			}
