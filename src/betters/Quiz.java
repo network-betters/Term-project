@@ -27,6 +27,7 @@ public class Quiz extends JFrame {
 	JLabel lblMaximumRaise;
 	JLabel lblCumulative;
 	JLabel lblminR;
+	JLabel lblPoint;
 	JScrollPane scroll;
 	private JPanel QuizPane;
 	public JTextField ChattingUser;
@@ -170,5 +171,10 @@ public class Quiz extends JFrame {
 		lblminR.setForeground(Color.WHITE);
 		lblminR.setBounds(188, 56, 115, 18);
 		QuizPane.add(lblminR);
+		
+		lblPoint = new JLabel("");
+		lblPoint.setFont(new Font("Bauhaus 93", Font.PLAIN, 18));
+		lblPoint.setForeground(Color.WHITE);
+		lblCumulative.setBounds(468, 56, 275, 18);
 	}
 }

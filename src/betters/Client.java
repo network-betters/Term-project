@@ -23,7 +23,7 @@ public class Client {
 	private int betP = 0;
 
 	public Client() throws Exception {
-		socket = new Socket("127.0.0.1", 827);
+		socket = new Socket("192.168.0.3", 827);
 		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		out = new PrintWriter(socket.getOutputStream(), true);
 		dataBox = new DataBox();
