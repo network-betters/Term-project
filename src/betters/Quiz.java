@@ -175,7 +175,7 @@ public class Quiz extends JFrame {
 		lblPoint = new JLabel("");
 		lblPoint.setFont(new Font("Bauhaus 93", Font.PLAIN, 18));
 		lblPoint.setForeground(Color.WHITE);
-		lblCumulative.setBounds(468, 56, 275, 18);
+		lblPoint.setBounds(468, 56, 275, 18);
 		QuizPane.add(lblPoint);
 	}
 }

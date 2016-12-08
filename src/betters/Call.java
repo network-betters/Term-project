@@ -52,6 +52,7 @@ public class Call extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				client.calPoint(point);
 				out.println("CALL");
+				dispose();
 			}
 		});
 
@@ -63,6 +64,7 @@ public class Call extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				quiz.ChattingUser.setEditable(false);
 				out.println("CALL");
+				dispose();
 			}
 		});
 	}

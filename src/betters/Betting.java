@@ -84,7 +84,7 @@ public class Betting extends JFrame {
 
 		lblSubTopic = new JLabel("Sub Topic : ");
 		lblSubTopic.setFont(new Font("Bauhaus 93", Font.PLAIN, 15));
-		lblSubTopic.setBounds(123, 61, 139, 18);
+		lblSubTopic.setBounds(100, 61, 200, 18);
 		contentPane.add(lblSubTopic);
 	}
 }
